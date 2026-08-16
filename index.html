@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zakat — hitung zakatmu sesuai Al-Qur'an dan Sunnah</title>
+<meta name="description" content="Aturan zakat sudah baku: nisab, kadar, haul, dan 8 golongan penerimanya. Isi kondisi hartamu, lihat berapa zakatmu, ke mana alirannya, dan kapan membayarnya — lengkap dengan dalil yang ditampilkan utuh. Gratis, tanpa daftar, dihitung di browser kamu sendiri.">
+<meta name="theme-color" content="#FFF8F0">
+<link rel="icon" href="assets/mark-color.svg">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/tokens.css?v=1">
+<link rel="stylesheet" href="css/base.css?v=1">
+<link rel="stylesheet" href="css/app.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#utama">Lompat ke isi</a>
+
+<script src="js/sprite.js?v=1"></script>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/mark-color.svg" alt="">
+      <span class="nav-brand-teks">
+        <span class="nav-brand-nama">Zakat</span>
+        <span class="nav-brand-sub">by Flavida</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" id="nav-toggle"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Buka menu">
+      <span class="nav-toggle-garis"></span>
+    </button>
+
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Beranda</a>
+      <a href="hitung.html">Hitung</a>
+      <a href="rujukan.html">Rujukan</a>
+      <a class="btn btn-dark btn-sm" href="hitung.html">Mulai Hitung</a>
+    </div>
+  </div>
+</nav>
+
+<main id="utama">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <!--
+      Latar pola geometri Islam (bintang delapan / khatim) — pola yang sama
+      dengan situs waris, karena keduanya satu keluarga: aturan yang dipakai
+      di sini aturan Islam, dan itu terlihat sejak layar pertama.
+    -->
+    <div class="hero-pola" aria-hidden="true">
+      <svg class="hero-pola-lapis hero-pola-besar" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="khatim-besar" width="120" height="120" patternUnits="userSpaceOnUse">
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+              <rect x="38" y="38" width="44" height="44"/>
+              <path d="M60 29 91 60 60 91 29 60Z"/>
+              <rect x="-22" y="-22" width="44" height="44"/>
+              <path d="M0 -31 31 0 0 31 -31 0Z"/>
+              <rect x="98" y="-22" width="44" height="44"/>
+              <path d="M120 -31 151 0 120 31 89 0Z"/>
+              <rect x="-22" y="98" width="44" height="44"/>
+              <path d="M0 89 31 120 0 151 -31 120Z"/>
+              <rect x="98" y="98" width="44" height="44"/>
+              <path d="M120 89 151 120 120 151 89 120Z"/>
+              <path d="M31 0 60 29M89 0 60 29M31 120 60 91M89 120 60 91M0 31 29 60M0 89 29 60M120 31 91 60M120 89 91 60"/>
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#khatim-besar)"/>
+      </svg>
+
+      <svg class="hero-pola-lapis hero-pola-kecil" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="khatim-kecil" width="60" height="60" patternUnits="userSpaceOnUse">
+            <g fill="none" stroke="currentColor" stroke-width="0.9">
+              <rect x="19" y="19" width="22" height="22"/>
+              <path d="M30 14.5 45.5 30 30 45.5 14.5 30Z"/>
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#khatim-kecil)"/>
+      </svg>
+    </div>
+
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="lencana-syariat">
+            <svg class="ic ic-sm" aria-hidden="true"><use href="#i-kitab"></use></svg>
+            Simulasi zakat menurut syariat Islam
+          </span>
+          <h1>Zakatmu sudah ada hitungannya.</h1>
+          <p class="hero-lead">
+            Nisab, kadar, dan waktunya turun lengkap dalam Al-Qur'an dan hadits sahih, dan
+            <span class="sorot">tidak pernah berubah sejak itu</span>. Yang membingungkan
+            cuma menerapkannya ke kondisi hartamu. Bagian itu kami yang kerjakan —
+            lengkap dengan dalil yang bisa kamu periksa sendiri.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="hitung.html">
+              Mulai Hitung <svg class="ic ic-sm" aria-hidden="true"><use href="#i-kanan"></use></svg>
+            </a>
+            <a class="btn btn-ghost" href="#cara">Lihat cara kerjanya</a>
+          </div>
+          <p class="flav-caption" style="margin-top: var(--space-5)">
+            Gratis · Tanpa daftar · Angka hartamu tidak pernah keluar dari perangkatmu
+          </p>
+        </div>
+
+        <!-- Animasi demo — dihitung mesin asli, bukan angka karangan -->
+        <div class="demo" id="demo" aria-label="Contoh simulasi perhitungan zakat">
+          <div class="demo-tahap" id="demo-tahap"></div>
+          <div id="demo-isi" style="min-height: 280px"></div>
+          <div class="demo-titik" id="demo-titik"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MASALAHNYA ═══ -->
+  <section class="section" id="cara" style="background: var(--bg-secondary)">
+    <div class="wrap">
+      <div style="max-width: 62ch; margin-bottom: var(--space-12)">
+        <span class="overline">Kenapa kami membuat ini</span>
+        <h2 class="flav-display-l">Aturannya baku, tapi banyak yang menunda karena tidak yakin hitungannya.</h2>
+        <p class="flav-body" style="margin-top: var(--space-5)">
+          Nisab dihitung dari gram emas, haul memakai tahun hijriah, kadar berbeda antara
+          simpanan, panen, dan ternak — akhirnya orang menunggu "tanya ustadz dulu" dan
+          zakatnya tertunda bertahun-tahun. Padahal aturannya pasti, dan bahkan
+          UU 23/2011 Pasal 21 menyuruh muzaki <span class="sorot">menghitung sendiri
+          kewajiban zakatnya</span>. Alat ini dibuat persis untuk itu.
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card card-hover">
+          <div class="card-icon"><svg class="ic" aria-hidden="true" style="color:var(--color-flame)"><use href="#i-kitab"></use></svg></div>
+          <h3 class="flav-heading-m">Satu-satunya sumber: wahyu</h3>
+          <p class="flav-body-sm" style="margin-top: var(--space-3)">
+            Setiap angka bisa kamu telusuri ke ayat atau hadits sahihnya — ditampilkan utuh
+            dengan teks Arab, terjemahan, derajat, dan tautan sumbernya. Fatwa dan aturan
+            negara hanya muncul kalau kamu menyalakannya, dan selalu diberi label.
+          </p>
+        </div>
+        <div class="card card-hover">
+          <div class="card-icon"><svg class="ic" aria-hidden="true" style="color:var(--color-flame)"><use href="#i-hati"></use></svg></div>
+          <h3 class="flav-heading-m">Angka hartamu tidak keluar</h3>
+          <p class="flav-body-sm" style="margin-top: var(--space-3)">
+            Semua dihitung di HP atau laptopmu. Tidak ada server yang menerima jumlah
+            hartamu, tidak ada yang disimpan. Satu-satunya permintaan jaringan: harga emas
+            hari ini — itu pun tanpa membawa data apa pun darimu.
+          </p>
+        </div>
+        <div class="card card-hover">
+          <div class="card-icon"><svg class="ic" aria-hidden="true" style="color:var(--color-flame)"><use href="#i-timbangan"></use></svg></div>
+          <h3 class="flav-heading-m">Lengkap sampai ternak</h3>
+          <p class="flav-body-sm" style="margin-top: var(--space-3)">
+            Uang, emas-perak, dagang, penghasilan, panen, kambing-sapi-unta, harta temuan,
+            sampai zakat fitrah — termasuk tabel ternak dari surat Abu Bakar yang jarang
+            ada di kalkulator lain. Diuji dengan 85 kasus baku dari kitab fiqh.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LANGKAH ═══ -->
+  <section class="section">
+    <div class="wrap">
+      <span class="overline">Tiga langkah</span>
+      <h2 class="flav-display-l" style="max-width: 20ch">Dari ragu ke angka yang jelas dalam dua menit.</h2>
+
+      <div class="grid grid-3" style="margin-top: var(--space-10)">
+        <div class="card">
+          <span class="badge">Langkah 1</span>
+          <h3 class="flav-heading-m" style="margin-top: var(--space-4)">Isi kondisi hartamu</h3>
+          <p class="flav-body-sm" style="margin-top: var(--space-3)">
+            Ketuk jenis harta yang kamu punya, isi angkanya, sebut hutang-piutangmu.
+            Perkiraan wajar sudah cukup — tidak perlu audit.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">Langkah 2</span>
+          <h3 class="flav-heading-m" style="margin-top: var(--space-4)">Lihat simulasinya</h3>
+          <p class="flav-body-sm" style="margin-top: var(--space-3)">
+            Berapa zakatmu, bagaimana alirannya ke delapan golongan penerima, dan kapan
+            membayarnya. Ubah isian, angkanya ikut berubah seketika — termasuk saat
+            membandingkan mode Qur'an &amp; Sunnah dengan aturan Indonesia.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge">Langkah 3</span>
+          <h3 class="flav-heading-m" style="margin-top: var(--space-4)">Tunaikan, bawa buktinya</h3>
+          <p class="flav-body-sm" style="margin-top: var(--space-3)">
+            Ada daftar langkah selanjutnya: niat, memilih amil atau menyalurkan langsung,
+            sampai bukti setor untuk pengurang pajak. Hasilnya bisa disimpan jadi
+            PDF atau gambar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BATASAN — jujur di depan ═══ -->
+  <section class="section" style="padding-top: 0">
+    <div class="wrap">
+      <div class="batasan">
+        <div class="batasan-kepala">
+          <span class="badge badge-muted">Batasan</span>
+          <h2 class="flav-heading-l" style="margin-top: var(--space-3)">Yang perlu kamu tahu
+            sebelum memakai</h2>
+        </div>
+        <div class="batasan-poin">
+          <div class="batasan-item">
+            <span class="batasan-ikon">
+              <svg class="ic" aria-hidden="true"><use href="#i-timbangan"></use></svg>
+            </span>
+            <div>
+              <strong>Titik khilaf tidak disembunyikan</strong>
+              <p>Pada beberapa hal ulama berbeda pendapat — perhiasan yang dipakai, hutang,
+                nisab uang, zakat penghasilan. Kami memakai pendapat mazhab Syafi'i dan
+                praktik BAZNAS, lalu <em>menuliskan pendapat lainnya</em> di tempat yang
+                sama, bukan menghapusnya.</p>
+            </div>
+          </div>
+          <div class="batasan-item">
+            <span class="batasan-ikon">
+              <svg class="ic" aria-hidden="true"><use href="#i-waspada"></use></svg>
+            </span>
+            <div>
+              <strong>Beberapa keadaan tidak dihitung otomatis</strong>
+              <p>Saham dan kripto, properti yang disewakan, tambang, zakat badan usaha, dan
+                harta bercampur riba butuh penilaian manusia. Untuk itu kami bilang terus
+                terang dan mengarahkanmu ke amil atau ustadz — dengan angka dari sini
+                sebagai bahan awal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KODE TERBUKA & KONTRIBUSI ═══ -->
+  <section class="section" style="padding-top: 0" id="kontribusi">
+    <div class="wrap">
+      <div class="terbuka">
+        <div class="terbuka-kiri">
+          <span class="overline">Kodenya terbuka</span>
+          <h2 class="flav-display-m" style="max-width: 16ch">Periksa sendiri, jangan percaya
+            begitu saja.</h2>
+
+          <p class="flav-body" style="margin-top: var(--space-5)">
+            Ini menyangkut rukun Islam dan harta, jadi kami tidak minta kamu percaya pada
+            kotak hitam. Seluruh kode perhitungannya bisa dibaca siapa pun:
+            <span class="sorot">angka-angka nisabnya, tabel ternaknya, dan 85 kasus
+            ujinya</span> yang jawabannya diambil dari nash dan kitab fiqh.
+          </p>
+
+          <div class="dalil" style="margin-top: var(--space-6)">
+            <div class="dalil-rujukan">HR Bukhari no. 1395</div>
+            <div class="dalil-arab" lang="ar" dir="rtl">فَأَعْلِمْهُمْ أَنَّ اللَّهَ افْتَرَضَ عَلَيْهِمْ صَدَقَةً فِي أَمْوَالِهِمْ تُؤْخَذُ مِنْ أَغْنِيَائِهِمْ وَتُرَدُّ عَلَى فُقَرَائِهِمْ</div>
+            <div class="dalil-terjemah">
+              "…beri tahu bahwa Allah mewajibkan atas mereka zakat pada harta mereka —
+              diambil dari orang kaya mereka dan dikembalikan kepada orang fakir mereka."
+            </div>
+            <div class="dalil-sumber">Pesan Nabi ﷺ kepada Mu'adz. Sahih.</div>
+            <div class="dalil-tautan">
+              <a href="https://www.hadits.id/hadits/bukhari/1395" target="_blank" rel="noopener noreferrer">
+                <svg class="ic ic-sm" aria-hidden="true"><use href="#i-tautan"></use></svg>
+                Baca di hadits.id — Bukhari 1395
+              </a>
+            </div>
+          </div>
+
+          <p class="flav-body-sm" style="margin-top: var(--space-5)">
+            Kalau kamu paham fiqh zakat dan menemukan yang keliru — nomor hadits, terjemah,
+            atau hitungan — sumbangkanlah koreksinya. Bukan untuk kami: untuk setiap muslim
+            yang memakai alat ini menunaikan rukun Islamnya.
+          </p>
+
+          <div class="btn-row" style="margin-top: var(--space-6)">
+            <a class="btn btn-dark" href="https://github.com/arnantoakbar/zakat"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="ic ic-sm ic-isi" aria-hidden="true"><use href="#i-github"></use></svg>
+              Lihat kodenya di GitHub
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/arnantoakbar/zakat/issues/new"
+               target="_blank" rel="noopener noreferrer">
+              Laporkan kekeliruan
+            </a>
+          </div>
+        </div>
+
+        <div class="terbuka-kanan">
+          <!-- Cuplikan kode sungguhan dari mesin zakat, bukan hiasan. -->
+          <div class="kode-kartu">
+            <div class="kode-bar">
+              <span class="kode-titik"></span><span class="kode-titik"></span><span class="kode-titik"></span>
+              <span class="kode-nama">js/zakat/const.js</span>
+            </div>
+            <pre class="kode-isi"><code><span class="k-c">// 20 dinar emas = 85 gram;</span>
+<span class="k-c">// 200 dirham perak = 595 gram.</span>
+NISAB_EMAS_GRAM: <span class="k-n">85</span>,
+NISAB_PERAK_GRAM: <span class="k-n">595</span>,
+
+<span class="k-c">// rub'ul 'usyr — 1/40 = 2,5%</span>
+KADAR_SIMPANAN: <span class="k-n">1</span> / <span class="k-n">40</span>,
+
+<span class="k-c">// 10% hujan, 5% irigasi berbiaya</span>
+KADAR_TANI: {
+  hujan: <span class="k-n">1</span> / <span class="k-n">10</span>,
+  irigasi: <span class="k-n">1</span> / <span class="k-n">20</span>
+}</code></pre>
+          </div>
+
+          <div class="kontrib">
+            <div class="kontrib-judul">Yang paling kami butuhkan</div>
+            <ul class="kontrib-daftar">
+              <li>
+                <svg class="ic ic-sm" aria-hidden="true"><use href="#i-kitab"></use></svg>
+                <span><strong>Koreksi dalil</strong> dari yang paham fiqh zakat — nomor
+                  hadits, derajat, atau terjemahan yang keliru di <em>js/dalil.js</em>.</span>
+              </li>
+              <li>
+                <svg class="ic ic-sm" aria-hidden="true"><use href="#i-timbangan"></use></svg>
+                <span><strong>Kasus uji baru</strong> dari kitab fiqh atau praktik amil,
+                  lengkap dengan jawaban bakunya.</span>
+              </li>
+              <li>
+                <svg class="ic ic-sm" aria-hidden="true"><use href="#i-waspada"></use></svg>
+                <span><strong>Laporan kekeliruan hitungan</strong> beserta isian lengkapnya,
+                  supaya bisa kami reproduksi.</span>
+              </li>
+            </ul>
+            <p class="kontrib-kaki">
+              Tidak bisa ngoding? Tulis saja di <em>Issues</em> dengan bahasa biasa. Yang
+              kami perlukan ilmunya, bukan kodenya.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section" style="padding-top: 0">
+    <div class="wrap">
+      <div style="background: var(--bg-dark); border-radius: var(--radius-cta); padding: var(--space-12) var(--space-6); text-align: center; position: relative; overflow: hidden">
+        <div style="position:absolute; inset:0; background: radial-gradient(ellipse 60% 80% at 50% 110%, rgba(232,57,29,0.35), transparent 65%)"></div>
+        <div style="position: relative">
+          <h2 class="flav-display-m" style="color: var(--fg-on-dark); max-width: 22ch; margin-inline: auto">
+            Hartamu bersih justru saat zakatnya keluar.
+          </h2>
+          <p style="color: var(--fg-on-dark-dim); margin: var(--space-5) auto var(--space-8); max-width: 48ch">
+            Dua menit, gratis, tanpa daftar. Kalau nanti mau dibawa ke amil atau ustadz,
+            hasil dan dalilnya tinggal disimpan jadi PDF.
+          </p>
+          <a class="btn btn-primary" href="hitung.html">
+            Mulai Hitung <svg class="ic ic-sm" aria-hidden="true"><use href="#i-kanan"></use></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-note">
+        Zakat adalah alat bantu hitung, <strong>bukan sumber utama</strong>. Verifikasi
+        hasilnya kepada amil atau ustadz terdekat untuk keadaan yang tidak tercakup.
+      </p>
+      <p style="margin-top: var(--space-4)">
+        <a href="rujukan.html">Rujukan Al-Qur'an &amp; Hadits</a> &nbsp;·&nbsp;
+        <a href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">Kode sumber di GitHub</a>
+      </p>
+    </div>
+    <div class="footer-made">
+      Kodenya terbuka — silakan diperiksa dan dikoreksi.<br>
+      Made with 🔥 in Indonesia
+    </div>
+  </div>
+</footer>
+
+<script src="js/zakat/const.js?v=1"></script>
+<script src="js/zakat/dagang.js?v=1"></script>
+<script src="js/zakat/uang.js?v=1"></script>
+<script src="js/zakat/penghasilan.js?v=1"></script>
+<script src="js/zakat/tani.js?v=1"></script>
+<script src="js/zakat/ternak.js?v=1"></script>
+<script src="js/zakat/rikaz.js?v=1"></script>
+<script src="js/zakat/fitrah.js?v=1"></script>
+<script src="js/zakat/solve.js?v=1"></script>
+<script src="js/dalil.js?v=1"></script>
+<script src="js/harga.js?v=1"></script>
+<script src="js/ui-landing.js?v=1"></script>
+<script src="js/ui-nav.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uji mesin zakat</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/mark-color.svg">
+<link rel="stylesheet" href="css/tokens.css?v=1">
+<style>
+  body { font-family: var(--font-body); background: var(--bg-primary); color: var(--fg1);
+    max-width: 860px; margin: 0 auto; padding: 32px 20px; }
+  h1 { font-family: var(--font-display); font-size: 28px; }
+  .ringkas { font-size: 18px; font-weight: 700; margin: 16px 0 24px; }
+  .ringkas.gagal { color: var(--color-error); }
+  .ringkas.lulus { color: var(--color-green); }
+  .kasus { padding: 8px 12px; border-radius: 8px; font-size: 14px; margin-bottom: 4px; }
+  .kasus.ok { background: rgba(27,94,59,0.07); }
+  .kasus.tidak { background: rgba(232,57,29,0.1); font-weight: 600; }
+  .kasus .pesan { display:block; color: var(--color-ember); font-weight: 400; margin-top: 4px; }
+</style>
+</head>
+<body>
+<h1>Uji mesin zakat</h1>
+<p>Jawaban baku dari nash dan tabel kitab fiqh. Kalau ada satu saja yang merah,
+hasil kalkulator tidak boleh dipercaya.</p>
+<div id="ringkas" class="ringkas">Menjalankan…</div>
+<div id="daftar"></div>
+
+<script src="js/zakat/const.js?v=1"></script>
+<script src="js/zakat/dagang.js?v=1"></script>
+<script src="js/zakat/uang.js?v=1"></script>
+<script src="js/zakat/penghasilan.js?v=1"></script>
+<script src="js/zakat/tani.js?v=1"></script>
+<script src="js/zakat/ternak.js?v=1"></script>
+<script src="js/zakat/rikaz.js?v=1"></script>
+<script src="js/zakat/fitrah.js?v=1"></script>
+<script src="js/zakat/solve.js?v=1"></script>
+<script src="js/dalil.js?v=1"></script>
+<script src="js/tests.js?v=1"></script>
+<script>
+(function () {
+  var hasil = Tests.jalankan();
+  var gagal = hasil.filter(function (h) { return !h.lulus; });
+  var r = document.getElementById('ringkas');
+  r.textContent = (hasil.length - gagal.length) + '/' + hasil.length + ' lulus' +
+    (gagal.length ? ' — ' + gagal.length + ' GAGAL' : ' — semua hijau');
+  r.className = 'ringkas ' + (gagal.length ? 'gagal' : 'lulus');
+  document.getElementById('daftar').innerHTML = hasil.map(function (h) {
+    return '<div class="kasus ' + (h.lulus ? 'ok' : 'tidak') + '">' +
+      (h.lulus ? '✓ ' : '✗ ') + h.nama +
+      (h.pesan ? '<span class="pesan">' + h.pesan + '</span>' : '') + '</div>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

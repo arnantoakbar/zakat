@@ -1,0 +1,86 @@
+/*
+ * Tata letak cetak — "Simpan sebagai PDF".
+ *
+ * Tujuannya selembar dokumen yang enak dibawa ke amil atau ustadz: hasil,
+ * alasannya, dalilnya. Bagian yang hanya berguna di layar (nav, wizard,
+ * tombol, saklar) disembunyikan; kartu yang tadinya bisa dibuka-tutup
+ * dibuka semua supaya tidak ada informasi yang hilang di kertas.
+ */
+
+@page {
+  margin: 14mm 12mm;
+}
+
+/* Sembunyikan yang hanya untuk layar */
+.nav,
+.skip-link,
+#wizard,
+.ekspor-baris,
+.mode-saklar,
+.demo,
+.btn,
+.footer-made,
+.asnaf-ket {
+  display: none !important;
+}
+
+body {
+  background: #FFFFFF !important;
+}
+
+.section {
+  padding: 0 0 18px !important;
+}
+
+/* Buka semua kartu kelompok berikut isinya */
+.kel-kartu:not(.buka) .kel-isi { display: block !important; }
+.kel-kepala .panah { display: none !important; }
+
+/* Jangan memotong kartu di tengah halaman */
+.kel-kartu,
+.dalil,
+.card,
+.alir-tahap,
+.gw-item,
+.delta,
+.total-hero,
+.catatan-item {
+  break-inside: avoid;
+}
+
+/* Kotak total: latar gelap tetap dicetak bila browser mengizinkan,
+   tapi teksnya harus tetap terbaca kalau latarnya dibuang penghemat tinta. */
+.total-hero {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  border: 2px solid #111111;
+}
+.total-hero .total-angka,
+.total-hero .total-label,
+.total-hero .total-sub { color: #111111; }
+@media print {
+  .total-hero { background: #FFFFFF !important; }
+  .total-hero::before { display: none; }
+  .total-hero .total-chips span { color: #111111; border-color: #999999; }
+}
+
+/* Meter & kadar tetap tampil — mereka informatif di kertas juga */
+.meter-isi { transition: none !important; }
+.kadar-sel.nyala { animation: none !important; }
+.alir-panah .ic { animation: none !important; }
+
+/* Ayat Arab jangan pecah aneh */
+.dalil-arab { line-height: 1.9; }
+
+/* Tautan: tampilkan alamatnya supaya tetap bisa ditelusuri dari kertas */
+.dalil-tautan a::after {
+  content: " (" attr(href) ")";
+  font-size: 10px;
+  color: #999999;
+  word-break: break-all;
+}
+
+.footer {
+  border-top: 1px solid #DDDDDD;
+  font-size: 11px;
+}
