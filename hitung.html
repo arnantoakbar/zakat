@@ -20,7 +20,7 @@
 <a class="fl-skip" href="#main">Lompat ke isi</a>
 
 <header>
-  <nav class="fl-nav" data-autohide data-sans-cta aria-label="Utama">
+  <nav class="fl-nav" data-autohide aria-label="Utama">
     <a class="fl-nav__brand" href="index.html" aria-label="Zakat by Flavida, beranda">
       <img src="assets/v4/mark-color.svg" alt="" width="34" height="34"><span>Zakat</span>
     </a>
@@ -29,6 +29,7 @@
       <li><a href="hitung.html" aria-current="page">Hitung</a></li>
       <li><a href="rujukan.html">Rujukan</a></li>
     </ul>
+    <a class="fl-btn fl-btn--sm fl-nav__cta" href="#wizard">Mulai hitung</a>
     <button class="fl-iconbtn zk-tema" type="button" data-theme-toggle aria-pressed="false" aria-label="Mode gelap">
       <svg class="fl-icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
       <svg class="fl-icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -41,7 +42,7 @@
   <div class="fl-menu" id="menu">
     <nav aria-label="Menu seluler">
       <a href="index.html">Beranda</a>
-      <a href="hitung.html">Hitung</a>
+      <a href="hitung.html" aria-current="page">Hitung</a>
       <a href="rujukan.html">Rujukan</a>
     </nav>
     <p class="menu__foot"><a class="fl-link" href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">Kode di GitHub</a></p>
@@ -54,7 +55,7 @@
   <section class="fl-section zk-wizard" id="wizard">
     <div class="fl-wrap fl-wrap--narrow">
 
-      <div class="zk-top">
+      <div class="zk-top" data-cta-sentinel>
         <h1 class="zk-title">Hitung zakatmu</h1>
         <button class="fl-btn fl-btn--sm fl-btn--ghost" type="button" data-dialog-open="#dlg-reset">
           <svg class="fl-icon" aria-hidden="true"><use href="#i-rotate-ccw"/></svg> Mulai ulang

@@ -149,7 +149,8 @@
 .fl-nav__toggle .i-close { display: none; }
 .fl-nav__toggle[aria-expanded="true"] .i-open { display: none; }
 .fl-nav__toggle[aria-expanded="true"] .i-close { display: block; }
-.menu__foot { margin-top: 20px; padding-inline: 6px; }
+.menu__foot { margin-top: 20px; }
+.fl-menu .menu__foot a { font: 700 1rem var(--font-body); letter-spacing: 0; padding: 10px 6px; }
 
 /* Dalil di dalam akordeon: kutipan datar (sumur), bukan kartu di dalam kartu */
 .zk-dalil .fl-cite { box-shadow: none; background: var(--surface-sunk); }
@@ -186,3 +187,11 @@
 /* Hero (atau halaman hitung) sudah memuat ajakan yang sama: sembunyikan tombol kembarnya di navbar. */
 .fl-nav[data-sans-cta] .fl-nav__cta { display: none; }
 @media (max-width: 899px) { .fl-nav[data-sans-cta] .zk-tema { margin-left: auto; } }
+
+/* ── Navbar menempel & menu seluler (aturan yang ada di kit situs contoh, bukan CSS inti) ── */
+/* <header> hanya setinggi navbar; tanpa ini .fl-nav yang sticky tidak pernah menempel saat digulir
+   sehingga tidak bisa muncul lagi ketika pemakai menggulir ke atas. */
+body > header { display: contents; }
+.fl-nav { z-index: 90; }                         /* di atas .fl-menu (80) supaya tombol menu/tutup tetap bisa diketuk */
+.fl-menu nav { display: grid; gap: 4px; }        /* satu tautan per baris */
+.fl-menu a[aria-current="page"] { color: var(--color-flame-ink); }

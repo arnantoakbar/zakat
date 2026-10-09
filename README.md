@@ -86,11 +86,13 @@ yang disimpan situs ini: bukan data harta, hanya kata `light` atau `dark`.
 
 ![Tema gelap](docs/gambar/09-tema-gelap.png)
 
-Dirancang mobile-first. Di hero, tombol "Mulai hitung" di navbar disembunyikan selama
-ajakan yang sama masih terlihat di layar, supaya tidak ada dua tombol kembar; ia muncul
-lagi begitu hero digulir lewat.
+Dirancang mobile-first. Navbar menempel: ia menyingkir saat menggulir ke bawah dan muncul
+lagi begitu menggulir ke atas, lengkap dengan tombol utama "Mulai hitung". Tombol itu
+disembunyikan hanya selama cover (hero di beranda, judul di halaman hitung) masih terlihat,
+supaya tidak ada dua ajakan yang kembar. Menu hamburger di mobile berupa daftar satu tautan
+per baris, dengan tombol tutup (X) tetap di tempat tombol menu tadi berada.
 
-<img src="docs/gambar/10-mobile-beranda.png" width="300" alt="Beranda di mobile">&nbsp;&nbsp;<img src="docs/gambar/10-mobile.png" width="300" alt="Hasil di mobile">
+<img src="docs/gambar/10-mobile-beranda.png" width="240" alt="Beranda di mobile">&nbsp;<img src="docs/gambar/13-menu-mobile.png" width="240" alt="Menu hamburger di mobile">&nbsp;<img src="docs/gambar/10-mobile.png" width="240" alt="Hasil di mobile">
 
 ### Rujukan dan uji mesin
 
@@ -192,8 +194,11 @@ Beberapa keputusan yang perlu diketahui kalau mengubah desain:
   `fl-theme`, dan skrip satu baris di `<head>` memulihkannya sebelum cat pertama supaya
   tidak berkedip. Halaman cetak/PDF selalu dipaksa terang.
 - **Tombol utama navbar** ("Mulai hitung") disembunyikan lewat `data-sans-cta` selama
-  `[data-cta-sentinel]` (baris tombol di hero) terlihat, dan dihapus dari halaman hitung
-  yang memang sudah berupa kalkulatornya.
+  `[data-cta-sentinel]` terlihat (baris tombol di hero beranda, judul di halaman hitung).
+- **Navbar menempel** karena `body > header { display: contents }` di `css/zakat.css`:
+  tanpa itu `<header>` hanya setinggi navbar dan `position: sticky` tidak pernah bekerja.
+  Aturan ini, z-index navbar di atas menu, dan tata letak menu seluler diambil dari
+  `ui_kits/website/site.css` di repo sistem desain — bukan dari CSS inti kit.
 - **Status tidak pernah bergantung pada warna saja** (aturan sistem): chip status zakat
   (`.zk-status`) membawa bentuk berbeda + kata — bulat "wajib", segitiga "menunggu haul",
   cincin "belum nisab", belah ketupat "penjelasan".

@@ -4,7 +4,11 @@
  * 1. Tombol utama di navbar disembunyikan selama tombol yang sama di hero masih
  *    terlihat (data-cta-sentinel), supaya tidak ada dua ajakan yang kembar di
  *    layar; ia muncul lagi begitu hero digulir lewat.
- * 2. Status tombol tema (aria-pressed) mengikuti tema yang BENAR-BENAR tampil,
+ * 2. Kit menahan navbar selama ada fokus di dalamnya (benar untuk pemakai keyboard).
+ *    Di layar sentuh, tombol yang baru diketuk tetap berfokus, sehingga navbar tidak
+ *    menyingkir lagi saat menggulir. Jadi fokus dilepas setelah ketukan pointer
+ *    (event.detail > 0); aktivasi lewat keyboard (detail 0) tetap menjaga fokus.
+ * 3. Status tombol tema (aria-pressed) mengikuti tema yang BENAR-BENAR tampil,
  *    termasuk saat masih "auto" mengikuti perangkat. Pemilihan dan penyimpanan
  *    tema dikerjakan widget bawaan sistem (data-theme-toggle + data-theme-persist).
  */
@@ -20,6 +24,11 @@
       nav.toggleAttribute('data-sans-cta', e[0].isIntersecting);
     }).observe(sentinel);
   }
+
+  nav.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (b && e.detail > 0) setTimeout(function () { b.blur(); }, 0);
+  });
 
   var mq = window.matchMedia('(prefers-color-scheme: dark)');
   function segarkan() {
