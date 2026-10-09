@@ -1,168 +1,140 @@
 /*
- * Animasi demo di halaman utama.
+ * Demo di halaman utama.
  *
  * Angka yang ditampilkan TIDAK dikarang. Contoh kasusnya dijalankan lewat
- * mesin zakat yang sama persis dengan yang dipakai user nanti — jadi apa
+ * mesin zakat yang sama persis dengan yang dipakai pemakai nanti, jadi apa
  * yang dilihat di halaman depan memang begitulah hasilnya. Harganya memakai
  * nilai bawaan (bukan API) supaya demonya deterministik dan tetap jalan
  * saat offline.
+ *
+ * Berganti tahap sendiri sampai pemakai menyentuhnya (atau menekan jeda);
+ * berhenti saat tab tidak terlihat, dan tidak bergerak sama sekali bila
+ * pemakai meminta gerak dikurangi.
  */
 
 (function () {
   'use strict';
 
-  var HARGA = window.Harga.BAWAAN;
+  var D = window.UIDalil, ic = D.ic;
+  var fmt = new Intl.NumberFormat('id-ID');
+  function rp(n) { return 'Rp ' + fmt.format(Math.round(n)); }
 
   var CONTOH = {
     mode: 'murni',
-    harga: HARGA,
+    harga: window.Harga.BAWAAN,
     uang: { jumlah: 250000000 },
     emas: { gramSimpan: 20 },
     hutang: { jatuhTempo: 10000000 },
     fitrah: { jiwa: 4 },
     haul: { status: 'sudah' }
   };
-
   var hasil = window.Zakat.hitung(CONTOH);
   var sp = hasil.simpanan;
 
-  function rp(n) {
-    return 'Rp ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  function baris(ikon, judul, ket) {
+    return '<li><span class="fl-card__icon" style="width:44px;height:44px">' + ic(ikon) + '</span>' +
+      '<div><b>' + judul + '</b>' + (ket ? '<small>' + ket + '</small>' : '') + '</div></li>';
   }
-  function rpPendek(n) {
-    if (n >= 1e9) return 'Rp ' + (n / 1e9).toFixed(n % 1e9 === 0 ? 0 : 1).replace('.', ',') + ' M';
-    if (n >= 1e6) return 'Rp ' + Math.round(n / 1e6) + ' jt';
-    return rp(n);
-  }
-  function ikon(id, gaya) {
-    return '<svg class="ic" aria-hidden="true"' + (gaya ? ' style="' + gaya + '"' : '') +
-      '><use href="#' + id + '"></use></svg>';
+  function kv(rows) {
+    return '<dl class="fl-kv">' + rows.map(function (r) {
+      return '<div' + (r[2] ? ' class="is-total"' : '') + '><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>';
+    }).join('') + '</dl>';
   }
 
-  // ── Isi tiap tahap ───────────────────────────────────────────────
   var TAHAP = [
     {
-      judul: 'Langkah 1 — Kondisi hartamu',
+      judul: 'Kondisi hartamu',
       isi: function () {
-        var chips = [
-          { ik: 'i-dompet', t: 'Tabungan ' + rpPendek(CONTOH.uang.jumlah) },
-          { ik: 'i-emas', t: 'Emas 20 gram' },
-          { ik: 'i-minus', t: 'Hutang jatuh tempo ' + rpPendek(CONTOH.hutang.jatuhTempo) },
-          { ik: 'i-beras', t: 'Keluarga 4 jiwa' }
-        ].map(function (c, i) {
-          return '<span class="demo-chip" style="animation-delay:' + (i * 160) + 'ms">' +
-            ikon(c.ik) + c.t + '</span>';
-        }).join('');
-        return '<p class="flav-body-sm" style="margin-bottom:var(--space-4)">Contoh: seorang ' +
-          'karyawan dengan simpanan yang sudah mengendap setahun:</p><div>' + chips + '</div>';
+        return '<p class="fl-hint">Seorang karyawan dengan simpanan yang sudah mengendap setahun:</p>' +
+          '<ul class="fl-list zk-baris">' +
+          baris('i-wallet', 'Tabungan ' + rp(CONTOH.uang.jumlah)) +
+          baris('i-coins', 'Emas 20 gram', 'disimpan, tidak dipakai') +
+          baris('i-minus', 'Hutang jatuh tempo ' + rp(CONTOH.hutang.jatuhTempo)) +
+          baris('i-users-round', 'Keluarga 4 jiwa', 'untuk zakat fitrah') + '</ul>';
       }
     },
     {
-      judul: 'Langkah 2 — Dicek ke nisab',
+      judul: 'Dicek ke nisab',
       isi: function () {
-        var baris = sp.rincian.map(function (r, i) {
-          return '<div class="demo-baris" style="opacity:0;animation:naik .4s ease ' +
-            (i * 170) + 'ms forwards">' + ikon(r.id === 'emas' ? 'i-emas' : 'i-dompet') +
-            '<span>' + r.label + '</span><b>' + rpPendek(r.nilai) + '</b></div>';
-        }).join('');
-        baris += '<div class="demo-baris" style="opacity:0;animation:naik .4s ease 340ms forwards">' +
-          ikon('i-minus') + '<span>Hutang jatuh tempo</span>' +
-          '<b style="color:var(--color-flame)">− ' + rpPendek(sp.hutang) + '</b></div>';
-        baris += '<div class="demo-baris" style="opacity:0;animation:naik .4s ease 510ms forwards">' +
-          ikon('i-timbangan') + '<span style="font-weight:600">Harta bersih vs nisab ' +
-          '(85 gr emas)</span><b>' + rpPendek(sp.dasar) + ' &gt; ' + rpPendek(sp.nisab.rp) +
-          '</b></div>';
-        return baris +
-          '<p class="flav-caption" style="margin-top:var(--space-3)">Lewat nisab dan sudah ' +
-          'setahun (haul) → wajib zakat.</p>';
+        var rows = sp.rincian.map(function (r) { return [r.label, rp(r.nilai)]; });
+        rows.push(['Hutang jatuh tempo', '− ' + rp(sp.hutang)]);
+        rows.push(['Harta bersih', rp(sp.dasar), true]);
+        return kv(rows) +
+          '<div class="zk-meter"><div class="zk-meter__row"><span>Sudah melewati nisab dan setahun (haul)</span>' +
+          '<span>nisab ' + rp(sp.nisab.rp) + '</span></div>' +
+          '<div class="fl-progress" role="progressbar" aria-label="Posisi terhadap nisab" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="--value:100%"><i></i></div></div>';
       }
     },
     {
-      judul: 'Langkah 3 — Zakatnya dihitung',
+      judul: 'Zakatnya dihitung',
       isi: function () {
-        var sel = '';
-        for (var i = 0; i < 40; i++) {
-          sel += '<div class="kadar-sel' + (i === 0 ? ' nyala' : '') + '"></div>';
-        }
-        return '<div class="demo-baris"><span>Kadar simpanan: <strong>2,5%</strong> ' +
-          '(1 dari 40 bagian)</span><b style="color:var(--color-flame)">' +
-          rp(sp.zakat.rp) + '</b></div>' +
-          '<div class="kadar-grid" style="margin-top:var(--space-2)">' + sel + '</div>' +
-          '<div class="demo-baris" style="margin-top:var(--space-2)">' +
-          '<span>Zakat fitrah: 4 jiwa × 2,5 kg</span><b>' + hasil.fitrah.zakat.natura +
-          '</b></div>' +
-          '<p class="flav-caption" style="margin-top:var(--space-2)">39 bagian lainnya tetap ' +
-          'miliknya — justru menjadi bersih karena zakatnya ditunaikan.</p>';
+        return '<div class="zk-kadar"><div id="demo-waffle"></div>' +
+          '<p class="fl-hint"><b>1 dari 40 bagian</b> = 2,5%. Sisanya tetap milikmu dan menjadi bersih.</p></div>' +
+          kv([['Zakat simpanan', rp(sp.zakat.rp), true], ['Zakat fitrah, 4 jiwa × 2,5 kg', hasil.fitrah.zakat.natura]]);
+      },
+      sesudah: function () {
+        window.Flavida.chart(document.getElementById('demo-waffle'), { type: 'waffle', total: 40, filled: 1,
+          cols: 10, title: 'Satu bagian dari 40', locale: 'id-ID' });
       }
     },
     {
-      judul: 'Langkah 4 — Dasar aturannya ikut ditampilkan',
+      judul: 'Dasar aturannya',
       isi: function () {
-        var d = window.Dalil.ambil('qs9-103');
-        return '<div class="dalil" style="margin-top:0">' +
-          '<div class="dalil-rujukan">' + d.rujukan + '</div>' +
-          '<div class="dalil-arab" lang="ar" dir="rtl">' + d.segmen[0].arab + '</div>' +
-          '<div class="dalil-terjemah">' + d.segmen[0].arti + '</div>' +
-          '</div>' +
-          '<p class="flav-body-sm" style="margin-top:var(--space-4)">Setiap angka ditelusuri ' +
-          'ke ayat atau hadits sahihnya — ditampilkan utuh, bisa kamu baca dan periksa ' +
-          'sendiri di halaman hasil.</p>';
+        return D.cite('qs9-103', 'ambil', null, true) +
+          '<p class="fl-hint">Setiap angka ditelusuri ke ayat atau hadits sahihnya, utuh dan bisa kamu periksa sendiri di halaman hasil.</p>';
       }
     }
   ];
 
-  var wadahIsi = document.getElementById('demo-isi');
-  var wadahJudul = document.getElementById('demo-tahap');
-  var wadahTitik = document.getElementById('demo-titik');
-  var kini = 0;
-  var timer = null;
-
-  wadahTitik.innerHTML = TAHAP.map(function (t, i) {
-    return '<button type="button" aria-label="Lihat ' + t.judul + '" data-tahap="' + i + '"></button>';
-  }).join('');
+  var elIsi = document.getElementById('demo-isi');
+  var elJudul = document.getElementById('demo-judul');
+  var elTahap = document.getElementById('demo-tahap');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var kini = 0, timer = null, berhenti = reduced.matches;
 
   function tampil(n) {
     kini = n % TAHAP.length;
     var t = TAHAP[kini];
-    wadahJudul.textContent = t.judul;
-    wadahIsi.innerHTML = '<div class="demo-panel aktif">' + t.isi() + '</div>';
-    if (t.sesudah) t.sesudah(wadahIsi);
-    Array.prototype.forEach.call(wadahTitik.children, function (s, i) {
-      s.classList.toggle('on', i === kini);
-      s.setAttribute('aria-current', String(i === kini));
-    });
+    elJudul.textContent = (kini + 1) + '. ' + t.judul;
+    elIsi.innerHTML = t.isi();
+    if (t.sesudah) t.sesudah();
+    var radio = elTahap.querySelector('input[value="' + kini + '"]');
+    if (radio) radio.checked = true;
+    if (window.Motion && !reduced.matches) {
+      window.Motion.animate(elIsi, { opacity: [0, 1], y: [8, 0] }, { duration: 0.35 });
+    }
   }
 
-  // Selalu bersihkan timer lama sebelum menjadwalkan yang baru — tanpa ini,
-  // tiap ketukan titik navigasi meninggalkan rantai timer sendiri.
+  // Bersihkan timer lama sebelum menjadwalkan yang baru, supaya tiap ketukan
+  // tidak meninggalkan rantai timer sendiri.
   function jalan() {
     clearTimeout(timer);
-    timer = setTimeout(function () {
-      tampil(kini + 1);
-      jalan();
-    }, kini === 2 ? 4600 : 3600);
+    if (berhenti || document.hidden) return;
+    timer = setTimeout(function () { tampil(kini + 1); jalan(); }, kini === 2 ? 5200 : 4200);
   }
 
+  var tombolJeda = document.getElementById('demo-jeda');
+  function aturJeda(jeda) {
+    berhenti = jeda;
+    tombolJeda.setAttribute('aria-pressed', String(jeda));
+    tombolJeda.setAttribute('aria-label', jeda ? 'Putar animasi' : 'Jeda animasi');
+    tombolJeda.innerHTML = ic(jeda ? 'i-play' : 'i-pause');
+    if (jeda) clearTimeout(timer); else jalan();
+  }
+  tombolJeda.addEventListener('click', function () { aturJeda(!berhenti); });
+  if (berhenti) aturJeda(true);
+
+  elTahap.addEventListener('change', function (e) {
+    if (e.target.name !== 'tahap') return;
+    aturJeda(true);                  // pemakai memegang kendali; tidak berganti sendiri lagi
+    tampil(+e.target.value);
+  });
+  document.addEventListener('visibilitychange', jalan);
+  reduced.addEventListener('change', function (e) { aturJeda(e.matches); });
+
+  // Cuplikan dalil di bagian kode terbuka: dari dataset yang sama, bukan salinan.
+  document.getElementById('contoh-cite').innerHTML = D.cite('hr-muadz', 'zakat');
+
   tampil(0);
-
-  var kurangiGerak = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!kurangiGerak.matches) jalan();
-
-  kurangiGerak.addEventListener('change', function (e) {
-    if (e.matches) clearTimeout(timer);
-    else jalan();
-  });
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) clearTimeout(timer);
-    else if (!kurangiGerak.matches) jalan();
-  });
-
-  wadahTitik.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-tahap]');
-    if (!t) return;
-    tampil(Number(t.dataset.tahap));
-    if (!kurangiGerak.matches) jalan();
-    else clearTimeout(timer);
-  });
+  jalan();
 })();

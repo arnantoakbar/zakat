@@ -1,262 +1,196 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="auto" data-theme-persist>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rujukan — seluruh dalil zakat yang dipakai kalkulator ini</title>
-<meta name="description" content="Seluruh ayat Al-Qur'an dan hadits yang menjadi dasar kalkulator zakat ini, ditampilkan utuh dengan teks Arab, terjemahan, derajat, dan tautan ke sumbernya — beserta metodologi dan titik khilaf yang diambil.">
+<meta name="description" content="Seluruh ayat Al-Qur'an dan hadits yang menjadi dasar kalkulator zakat ini, ditampilkan utuh dengan teks Arab, terjemahan, derajat, dan tautan ke sumbernya, beserta metodologi dan titik khilaf yang diambil.">
 <meta name="theme-color" content="#FFF8F0">
-<link rel="icon" href="assets/mark-color.svg">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="css/tokens.css?v=1">
-<link rel="stylesheet" href="css/base.css?v=1">
-<link rel="stylesheet" href="css/app.css?v=1">
+<link rel="icon" href="assets/v4/mark-simple.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('fl-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="colors_and_type.css?v=2">
+<link rel="stylesheet" href="flavida.css?v=2">
+<link rel="stylesheet" href="flavida-extra.css?v=2">
+<link rel="stylesheet" href="flavida-app.css?v=2">
+<link rel="stylesheet" href="flavida-sections.css?v=2">
+<link rel="stylesheet" href="css/zakat.css?v=2">
+<link rel="stylesheet" href="css/print.css?v=2" media="print">
 </head>
 <body>
-<a class="skip-link" href="#utama">Lompat ke isi</a>
+<a class="fl-skip" href="#main">Lompat ke isi</a>
 
-<script src="js/sprite.js?v=1"></script>
-
-<nav class="nav">
-  <div class="wrap nav-inner">
-    <a class="nav-brand" href="index.html">
-      <img src="assets/mark-color.svg" alt="">
-      <span class="nav-brand-teks">
-        <span class="nav-brand-nama">Zakat</span>
-        <span class="nav-brand-sub">by Flavida</span>
-      </span>
+<header>
+  <nav class="fl-nav" data-autohide aria-label="Utama">
+    <a class="fl-nav__brand" href="index.html" aria-label="Zakat by Flavida, beranda">
+      <img src="assets/v4/mark-color.svg" alt="" width="34" height="34"><span>Zakat</span>
     </a>
-
-    <button class="nav-toggle" type="button" id="nav-toggle"
-            aria-expanded="false" aria-controls="nav-menu" aria-label="Buka menu">
-      <span class="nav-toggle-garis"></span>
+    <ul class="fl-nav__links" role="list">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="hitung.html">Hitung</a></li>
+      <li><a href="rujukan.html" aria-current="page">Rujukan</a></li>
+    </ul>
+    <a class="fl-btn fl-btn--sm fl-nav__cta" href="hitung.html">Mulai hitung</a>
+    <button class="fl-iconbtn zk-tema" type="button" data-theme-toggle aria-pressed="false" aria-label="Mode gelap">
+      <svg class="fl-icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="fl-icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
     </button>
-
-    <div class="nav-menu" id="nav-menu">
+    <button class="fl-nav__toggle" type="button" aria-label="Menu" aria-controls="menu" aria-expanded="false">
+      <svg class="fl-icon i-open" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="fl-icon i-close" aria-hidden="true"><use href="#i-x"/></svg>
+    </button>
+  </nav>
+  <div class="fl-menu" id="menu">
+    <nav aria-label="Menu seluler">
       <a href="index.html">Beranda</a>
       <a href="hitung.html">Hitung</a>
       <a href="rujukan.html">Rujukan</a>
-      <a class="btn btn-dark btn-sm" href="hitung.html">Mulai Hitung</a>
-    </div>
+    </nav>
+    <p class="menu__foot"><a class="fl-link" href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">Kode di GitHub</a></p>
   </div>
-</nav>
+</header>
 
-<main id="utama">
+<main id="main" tabindex="-1" class="zk-rujukan">
 
-  <section class="section">
-    <div class="wrap wrap-narrow">
-      <span class="overline">Rujukan &amp; metodologi</span>
-      <h1 class="flav-display-l">Semua dalilnya, di satu halaman.</h1>
-      <p class="flav-body-lead" style="margin-top: var(--space-5)">
-        Aturan zakat sudah baku dari nash, jadi sumbernya cukup dianalisa sekali, disimpan,
-        lalu dipakai berulang — tanpa mesin pencari, tanpa AI. Halaman ini memuat seluruh
-        ayat dan hadits yang dipakai kalkulator, apa adanya dan utuh, supaya siapa pun bisa
-        memeriksa.
-      </p>
-
-      <div class="note" style="margin-top: var(--space-6)">
-        <div class="note-title">Cara kami menjaga kutipan</div>
-        Setiap nomor hadits dicocokkan satu per satu dengan
-        <a href="https://www.hadits.id" target="_blank" rel="noopener noreferrer">hadits.id</a>
-        dan setiap ayat dengan
-        <a href="https://quran.com" target="_blank" rel="noopener noreferrer">Quran.com</a>
-        (Agustus 2026). Nomor hadits berbeda antar penerbit, jadi setiap entri membawa
-        tautan ke halaman sumbernya — jangan hanya percaya nomornya. Ayat
-        <strong>tidak pernah dipenggal</strong>: yang panjang ditampilkan sampai kalimat
-        penutupnya, lalu ruas yang relevan disorot di halaman hasil. Terjemahan ditulis
-        ulang dalam bahasa sehari-hari agar mudah dipahami — bukan salinan terjemahan
-        resmi, dan teks Arabnya selalu ditampilkan sebagai pegangan.
+  <section class="fl-section" data-section="Pengantar" style="padding-bottom:0">
+    <div class="fl-wrap">
+      <h1 class="zk-title">Semua dalilnya, di satu halaman.</h1>
+      <p class="fl-lead" style="margin-top:16px">Aturan zakat sudah baku dari nash, jadi sumbernya cukup dianalisa sekali, disimpan, lalu dipakai berulang, tanpa mesin pencari dan tanpa AI. Halaman ini memuat seluruh ayat dan hadits yang dipakai kalkulator, apa adanya dan utuh, supaya siapa pun bisa memeriksa.</p>
+      <div class="fl-callout" data-tone="note" style="margin-top:24px">
+        <span class="fl-callout__icon"><svg class="fl-icon" aria-hidden="true"><use href="#i-info"/></svg></span>
+        <div><h3>Cara kami menjaga kutipan</h3>
+          <p>Setiap nomor hadits dicocokkan satu per satu dengan <a class="fl-link" href="https://www.hadits.id" target="_blank" rel="noopener noreferrer">hadits.id</a> dan setiap ayat dengan <a class="fl-link" href="https://quran.com" target="_blank" rel="noopener noreferrer">Quran.com</a>. Nomor hadits berbeda antar penerbit, jadi setiap entri membawa tautan ke halaman sumbernya; jangan hanya percaya nomornya.</p>
+          <p>Ayat <b>tidak pernah dipenggal</b>: yang panjang ditampilkan sampai kalimat penutupnya, dan ruas yang relevan disorot di halaman hasil. Terjemahan ditulis ulang dalam bahasa sehari-hari agar mudah dipahami, bukan salinan terjemahan resmi, dan teks Arabnya selalu ditampilkan sebagai pegangan.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ ANGKA BAKU ═══ -->
-  <section class="section" style="padding-top: 0">
-    <div class="wrap wrap-narrow">
-      <span class="overline">Angka baku</span>
-      <h2 class="flav-heading-l" style="margin-bottom: var(--space-6)">Angka-angka yang tidak pernah berubah</h2>
-      <div class="hasil-grid">
-        <div class="card"><strong>Nisab emas — 85 gram</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">20 dinar × 4,25 gram. Uang, tabungan, dan harta dagang di-qiyas-kan ke
-          nisab ini (praktik BAZNAS/Kemenag). <em>HR Abu Dawud 1573.</em></p></div>
-        <div class="card"><strong>Nisab perak — 595 gram</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">200 dirham × 2,975 gram (5 uqiyah). <em>HR Abu Dawud 1573 · Bukhari 1405.</em></p></div>
-        <div class="card"><strong>Kadar simpanan — 2,5%</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Rub'ul 'usyr, seperempat dari sepersepuluh: 5 dirham dari tiap 200.
-          Berlaku untuk uang, emas, perak, dagang, dan (menurut fatwa) penghasilan. <em>HR Abu Dawud 1573 · Bukhari 1454.</em></p></div>
-        <div class="card"><strong>Haul — 1 tahun hijriah</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">≈ 354 hari. Hanya untuk simpanan dan ternak; panen, temuan, dan fitrah
-          tidak menunggu haul. <em>HR Abu Dawud 1573 · Ibnu Majah 1792.</em></p></div>
-        <div class="card"><strong>Pertanian — 5 wasaq, 10% / 5%</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Nisab 653 kg gabah ≈ 520 kg beras (konversi baku Kemenag/BAZNAS);
-          10% pengairan alami, 5% pengairan berbiaya; dibayar pada hari panen. <em>QS Al-An'am 141 · HR Bukhari 1405, 1483.</em></p></div>
-        <div class="card"><strong>Ternak — tabel dari hadits</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Kambing mulai 40 ekor, sapi mulai 30, unta mulai 5 — tabel lengkapnya
-          dari surat Abu Bakar dan hadits Mu'adz, disalin apa adanya ke kode. Syarat: digembalakan (sa'imah), bukan ternak dagang.
-          <em>HR Bukhari 1454 · Abu Dawud 1576.</em></p></div>
-        <div class="card"><strong>Rikaz — 20%</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Seperlima dari harta karun temuan, seketika, tanpa nisab (jumhur) dan
-          tanpa haul. <em>HR Bukhari 1499.</em></p></div>
-        <div class="card"><strong>Fitrah — 1 sha' per jiwa</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">≈ 2,5 kg beras (konversi baku BAZNAS), wajib bagi tiap muslim yang mampu,
-          lunas sebelum shalat Idulfitri. <em>HR Bukhari 1503, 1509.</em></p></div>
-        <div class="card"><strong>Penerima — 8 golongan</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Fakir, miskin, amil, muallaf, riqab, gharimin, fi sabilillah, ibnu
-          sabil — dan hanya delapan itu. <em>QS At-Taubah 60.</em></p></div>
+  <section class="fl-section" data-section="Angka baku">
+    <div class="fl-wrap">
+      <h2 class="zk-h2">Angka-angka yang tidak pernah berubah</h2>
+      <div class="fl-tablewrap" style="margin-top:24px">
+        <table class="fl-dt fl-dt--stack">
+          <thead><tr><th>Aturan</th><th>Nilai</th><th>Dasar</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Aturan">Nisab emas</td><td data-label="Nilai">85 gram (20 dinar)</td><td data-label="Dasar">HR Abu Dawud 1573. Uang, tabungan, dan harta dagang di-qiyas-kan ke nisab ini (praktik BAZNAS/Kemenag).</td></tr>
+            <tr><td data-label="Aturan">Nisab perak</td><td data-label="Nilai">595 gram (200 dirham)</td><td data-label="Dasar">HR Abu Dawud 1573; HR Bukhari 1405.</td></tr>
+            <tr><td data-label="Aturan">Kadar simpanan</td><td data-label="Nilai">2,5% (1/40)</td><td data-label="Dasar">HR Abu Dawud 1573; HR Bukhari 1454. Untuk uang, emas, perak, dagang, dan (menurut fatwa) penghasilan.</td></tr>
+            <tr><td data-label="Aturan">Haul</td><td data-label="Nilai">1 tahun hijriah (±354 hari)</td><td data-label="Dasar">HR Abu Dawud 1573; HR Ibnu Majah 1792. Hanya simpanan dan ternak; panen, temuan, dan fitrah tidak menunggu haul.</td></tr>
+            <tr><td data-label="Aturan">Pertanian</td><td data-label="Nilai">5 wasaq = 653 kg gabah ≈ 520 kg beras; 10% atau 5%</td><td data-label="Dasar">QS Al-An'am 141; HR Bukhari 1405 dan 1483. Dibayar pada hari panen. Konversi berat: standar Kemenag/BAZNAS.</td></tr>
+            <tr><td data-label="Aturan">Ternak</td><td data-label="Nilai">Kambing mulai 40, sapi mulai 30, unta mulai 5 ekor</td><td data-label="Dasar">HR Bukhari 1454; HR Abu Dawud 1576. Tabel lengkapnya disalin apa adanya ke kode. Syarat: digembalakan (sa'imah), bukan ternak dagang.</td></tr>
+            <tr><td data-label="Aturan">Rikaz (harta temuan)</td><td data-label="Nilai">20%, seketika</td><td data-label="Dasar">HR Bukhari 1499. Tanpa nisab menurut jumhur, tanpa haul.</td></tr>
+            <tr><td data-label="Aturan">Zakat fitrah</td><td data-label="Nilai">1 sha' ≈ 2,5 kg beras per jiwa</td><td data-label="Dasar">HR Bukhari 1503 dan 1509. Lunas sebelum shalat Idulfitri. Konversi berat: standar BAZNAS.</td></tr>
+            <tr><td data-label="Aturan">Penerima</td><td data-label="Nilai">8 golongan</td><td data-label="Dasar">QS At-Taubah 60. Fakir, miskin, amil, muallaf, riqab, gharimin, fi sabilillah, ibnu sabil, dan hanya itu.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- ═══ AYAT ═══ -->
-  <section class="section" style="padding-top: 0; background: var(--bg-secondary)">
-    <div class="wrap wrap-narrow" style="padding-top: var(--space-16)">
-      <span class="overline">Al-Qur'an</span>
-      <h2 class="flav-heading-l" style="margin-bottom: var(--space-2)">Ayat-ayat zakat yang dipakai</h2>
-      <p class="flav-body-sm" style="margin-bottom: var(--space-6)">Delapan ayat, ditampilkan utuh.</p>
-      <div id="daftar-quran"></div>
+  <section class="fl-section fl-section--tint" data-section="Al-Qur'an">
+    <div class="fl-wrap">
+      <h2 class="zk-h2">Ayat-ayat zakat yang dipakai</h2>
+      <p class="zk-ket" style="margin-top:10px">Tujuh ayat, ditampilkan utuh.</p>
+      <div class="zk-daftar" id="daftar-quran"></div>
     </div>
   </section>
 
-  <!-- ═══ HADITS ═══ -->
-  <section class="section">
-    <div class="wrap wrap-narrow">
-      <span class="overline">Hadits</span>
-      <h2 class="flav-heading-l" style="margin-bottom: var(--space-2)">Hadits-hadits yang dipakai</h2>
-      <p class="flav-body-sm" style="margin-bottom: var(--space-6)">
-        Lima belas hadits beserta derajatnya. Yang derajatnya diperselisihkan ditulis apa
-        adanya — termasuk hadits zakat perdagangan yang dinilai lemah oleh Al-Albani,
-        yang kami cantumkan justru supaya kamu tahu dasar kuat zakat dagang adalah keumuman
-        ayat dan ijma', bukan hadits itu.
-      </p>
-      <div id="daftar-hadits"></div>
+  <section class="fl-section" data-section="Hadits">
+    <div class="fl-wrap">
+      <h2 class="zk-h2">Hadits-hadits yang dipakai</h2>
+      <p class="zk-ket" style="margin-top:10px">Lima belas hadits beserta derajatnya. Yang derajatnya diperselisihkan ditulis apa adanya, termasuk hadits zakat perdagangan yang dinilai lemah oleh Al-Albani. Ia kami cantumkan justru supaya kamu tahu bahwa dasar kuat zakat dagang adalah keumuman ayat dan ijma', bukan hadits itu.</p>
+      <div class="zk-daftar" id="daftar-hadits"></div>
     </div>
   </section>
 
-  <!-- ═══ KHILAF ═══ -->
-  <section class="section" style="padding-top: 0">
-    <div class="wrap wrap-narrow">
-      <span class="overline">Jujur soal perbedaan</span>
-      <h2 class="flav-heading-l" style="margin-bottom: var(--space-6)">Titik khilaf &amp; posisi yang kami ambil</h2>
-      <div class="hasil-grid">
-        <div class="card"><strong>1 · Nisab uang: emas atau perak?</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Uang kertas tidak ada di zaman nash, jadi ia di-qiyas-kan. Kami memakai
-          <em>nisab emas</em> (85 gr) mengikuti BAZNAS/Kemenag. Pendapat nisab perak lebih rendah dan lebih menguntungkan penerima —
-          kalkulator menampilkan catatannya lengkap dengan angkanya setiap kali relevan. Perak fisik ≥ 595 gram tetap wajib menurut
-          nisabnya sendiri.</p></div>
-        <div class="card"><strong>2 · Hutang mengurangi atau tidak?</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Jumhur (dipakai BAZNAS): hutang yang jatuh tempo dekat mengurangi harta
-          zakat — ini yang kami hitung. Pendapat masyhur Syafi'iyah: hutang tidak menghalangi zakat sama sekali. Yang mau berhati-hati
-          cukup mengosongkan isian hutang.</p></div>
-        <div class="card"><strong>3 · Perhiasan yang dipakai</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Syafi'i (mazhab mayoritas Indonesia): perhiasan yang dipakai sewajarnya
-          tidak wajib dizakati — bawaan kalkulator. Hanafi: tetap wajib — tersedia sebagai centang "zakati juga".</p></div>
-        <div class="card"><strong>4 · Zakat penghasilan</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Tidak ada nash tersendiri. Fatwa MUI No. 3/2003 menetapkannya lewat qiyas:
-          nisab 85 gr emas setahun, kadar 2,5%. Karena dasarnya ijtihad, ia hanya dihitung di mode "+ Hukum Indonesia" — dan di mode
-          nash murni dijelaskan bagaimana gaji dizakati lewat zakat simpanan.</p></div>
-        <div class="card"><strong>5 · Fitrah dengan uang</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Nash menyebut makanan pokok; jumhur memegang itu. Hanafi membolehkan uang
-          senilainya, dan praktik BAZNAS mengikutinya. Kalkulator menampilkan beras di mode nash dan menambahkan konversi rupiah di
-          mode Indonesia.</p></div>
-        <div class="card"><strong>6 · Ternak kandang &amp; rikaz</strong>
-          <p class="flav-body-sm" style="margin-top:var(--space-2)">Ternak yang dikandangkan tidak wajib zakat ternak menurut jumhur (syarat
-          sa'imah dalam hadits); Maliki mewajibkan — dicatat. Rikaz tanpa nisab menurut jumhur; salah satu qaul Syafi'i mensyaratkannya —
-          dicatat juga.</p></div>
+  <section class="fl-section fl-section--tint" id="khilaf" data-section="Khilaf">
+    <div class="fl-wrap fl-wrap--narrow">
+      <h2 class="zk-h2">Titik khilaf dan posisi yang kami ambil</h2>
+      <p class="zk-ket" style="margin-top:10px">Pada beberapa hal ulama berbeda pendapat. Kalkulator memakai mazhab Syafi'i dan praktik BAZNAS/Kemenag, lalu menuliskan pendapat lainnya di tempat yang sama.</p>
+      <div style="margin-top:24px">
+        <details class="fl-accordion" open><summary>1 · Nisab uang: emas atau perak?</summary>
+          <p>Uang kertas tidak ada di zaman nash, jadi ia di-qiyas-kan. Kami memakai nisab emas (85 gram) mengikuti BAZNAS/Kemenag. Pendapat nisab perak lebih rendah dan lebih menguntungkan penerima; kalkulator menampilkan catatannya lengkap dengan angkanya setiap kali relevan. Perak fisik 595 gram atau lebih tetap wajib menurut nisabnya sendiri.</p></details>
+        <details class="fl-accordion"><summary>2 · Hutang mengurangi atau tidak?</summary>
+          <p>Jumhur (dipakai BAZNAS): hutang yang jatuh tempo dekat mengurangi harta zakat, dan ini yang kami hitung. Pendapat masyhur Syafi'iyah: hutang tidak menghalangi zakat sama sekali. Yang mau berhati-hati cukup mengosongkan isian hutang.</p></details>
+        <details class="fl-accordion"><summary>3 · Perhiasan yang dipakai</summary>
+          <p>Syafi'i (mazhab mayoritas Indonesia): perhiasan yang dipakai sewajarnya tidak wajib dizakati, jadi itu bawaannya. Hanafi: tetap wajib, tersedia sebagai centang "zakati juga".</p></details>
+        <details class="fl-accordion"><summary>4 · Zakat penghasilan</summary>
+          <p>Tidak ada nash tersendiri. Fatwa MUI No. 3 Tahun 2003 menetapkannya lewat qiyas: nisab 85 gram emas setahun, kadar 2,5%. Karena dasarnya ijtihad, ia hanya dihitung di mode "+ Hukum Indonesia"; di mode nash murni dijelaskan bagaimana gaji dizakati lewat zakat simpanan.</p></details>
+        <details class="fl-accordion"><summary>5 · Fitrah dengan uang</summary>
+          <p>Nash menyebut makanan pokok dan jumhur memegang itu. Hanafi membolehkan uang senilainya, dan praktik BAZNAS mengikutinya. Kalkulator menampilkan beras di mode nash dan menambahkan konversi rupiah di mode Indonesia.</p></details>
+        <details class="fl-accordion"><summary>6 · Ternak kandang dan rikaz</summary>
+          <p>Ternak yang dikandangkan tidak wajib zakat ternak menurut jumhur (syarat sa'imah dalam hadits); Maliki mewajibkan, dan itu dicatat. Rikaz tanpa nisab menurut jumhur; salah satu qaul Syafi'i mensyaratkannya, dan itu dicatat juga.</p></details>
       </div>
     </div>
   </section>
 
-  <!-- ═══ HUKUM RI ═══ -->
-  <section class="section" style="padding-top: 0; background: var(--bg-secondary)">
-    <div class="wrap wrap-narrow" style="padding-top: var(--space-16)">
-      <span class="overline">Pelengkap</span>
-      <h2 class="flav-heading-l" style="margin-bottom: var(--space-2)">Aturan hukum Indonesia</h2>
-      <p class="flav-body-sm" style="margin-bottom: var(--space-6)">
-        Rujukan utama tetap Al-Qur'an dan sunnah. Aturan negara dicantumkan karena mengatur
-        praktiknya di Indonesia — teks pasalnya diverifikasi lewat basis data peraturan
-        (pasal.id), bukan dari ingatan.
-      </p>
-      <div id="daftar-hukum"></div>
+  <section class="fl-section" data-section="Hukum RI">
+    <div class="fl-wrap fl-wrap--narrow">
+      <h2 class="zk-h2">Aturan hukum Indonesia</h2>
+      <p class="zk-ket" style="margin-top:10px">Rujukan utama tetap Al-Qur'an dan sunnah. Aturan negara dicantumkan karena mengatur praktiknya di Indonesia. Teks pasalnya diverifikasi lewat basis data peraturan (pasal.id), bukan dari ingatan.</p>
+      <div class="zk-hukum" id="daftar-hukum" style="margin-top:24px"></div>
     </div>
   </section>
 
-  <!-- ═══ GLOSARIUM ═══ -->
-  <section class="section">
-    <div class="wrap wrap-narrow">
-      <span class="overline">Istilah</span>
-      <h2 class="flav-heading-l" style="margin-bottom: var(--space-6)">Glosarium singkat</h2>
-      <div class="hasil-grid">
-        <div class="card"><strong>Nisab</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Batas minimal harta sebelum zakat menjadi wajib. Di bawahnya: tidak wajib.</p></div>
-        <div class="card"><strong>Haul</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Masa satu tahun hijriah (≈354 hari) harta bertahan di atas nisab.</p></div>
-        <div class="card"><strong>Muzakki</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Orang yang wajib menunaikan zakat — kamu, kalau hartamu sampai nisab.</p></div>
-        <div class="card"><strong>Mustahik</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Orang yang berhak menerima zakat — delapan golongan dalam QS At-Taubah 60.</p></div>
-        <div class="card"><strong>Amil</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Pengurus zakat: menghimpun dan menyalurkan. Di Indonesia: BAZNAS &amp; LAZ berizin.</p></div>
-        <div class="card"><strong>Sa'imah</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Ternak yang digembalakan bebas — syarat wajibnya zakat ternak.</p></div>
-        <div class="card"><strong>Rikaz</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Harta karun terpendam peninggalan lama yang ditemukan.</p></div>
-        <div class="card"><strong>Ta'jil</strong><p class="flav-body-sm" style="margin-top:var(--space-2)">Membayar zakat lebih awal sebelum haulnya genap — dibolehkan.</p></div>
-      </div>
-
-      <div class="note" style="margin-top: var(--space-10)">
-        <div class="note-title">Catatan pemeriksaan</div>
-        Isi halaman ini dan <em>js/dalil.js</em> perlu diperiksa satu kali oleh ustadz yang
-        kompeten di bidang fiqh zakat sebelum situs dianggap selesai — terutama penilaian
-        derajat hadits, yang antar ulama bisa berbeda. Logika perhitungan bisa diuji dengan
-        <a href="tests.html">test suite</a>; keabsahan kutipan tidak bisa. Koreksi bisa
-        dikirim lewat
-        <a href="https://github.com/arnantoakbar/zakat/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
+  <section class="fl-section fl-section--tint" data-section="Istilah">
+    <div class="fl-wrap fl-wrap--narrow">
+      <h2 class="zk-h2">Glosarium singkat</h2>
+      <dl class="zk-glosarium" style="margin-top:24px">
+        <div><dt>Nisab</dt><dd>Batas minimal harta sebelum zakat menjadi wajib. Di bawahnya: tidak wajib.</dd></div>
+        <div><dt>Haul</dt><dd>Masa satu tahun hijriah (±354 hari) harta bertahan di atas nisab.</dd></div>
+        <div><dt>Muzaki</dt><dd>Orang yang wajib menunaikan zakat: kamu, kalau hartamu sampai nisab.</dd></div>
+        <div><dt>Mustahik</dt><dd>Orang yang berhak menerima zakat, delapan golongan dalam QS At-Taubah 60.</dd></div>
+        <div><dt>Amil</dt><dd>Pengurus zakat yang menghimpun dan menyalurkan. Di Indonesia: BAZNAS dan LAZ berizin.</dd></div>
+        <div><dt>Sa'imah</dt><dd>Ternak yang digembalakan bebas, syarat wajibnya zakat ternak.</dd></div>
+        <div><dt>Rikaz</dt><dd>Harta karun terpendam peninggalan lama yang ditemukan.</dd></div>
+        <div><dt>Ta'jil</dt><dd>Membayar zakat lebih awal sebelum haulnya genap. Dibolehkan.</dd></div>
+      </dl>
+      <div class="fl-callout" data-tone="disclaimer" style="margin-top:32px">
+        <span class="fl-callout__icon"><svg class="fl-icon" aria-hidden="true"><use href="#i-scroll-text"/></svg></span>
+        <div><h3>Catatan pemeriksaan</h3>
+          <p>Isi halaman ini dan <code>js/dalil.js</code> perlu diperiksa satu kali oleh ustadz yang kompeten di bidang fiqh zakat, terutama penilaian derajat hadits yang antar ulama bisa berbeda. Logika perhitungan bisa diuji lewat <a class="fl-link" href="tests.html">test suite</a>; keabsahan kutipan tidak bisa. Koreksi bisa dikirim lewat <a class="fl-link" href="https://github.com/arnantoakbar/zakat/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p></div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div>
-      <p class="footer-note">
-        Zakat adalah alat bantu hitung, <strong>bukan sumber utama</strong>. Verifikasi
-        hasilnya kepada amil atau ustadz terdekat untuk keadaan yang tidak tercakup.
-      </p>
-      <p style="margin-top: var(--space-4)">
-        <a href="index.html">Beranda</a> &nbsp;·&nbsp;
-        <a href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">Kode sumber di GitHub</a>
-      </p>
+<footer class="fl-footer fl-footer--dark">
+  <div class="fl-wrap">
+    <div class="fl-footer__grid">
+      <div>
+        <b class="zk-foot-brand">Zakat</b>
+        <p style="margin-top:10px;max-width:38ch">Alat bantu hitung, <b>bukan sumber utama dan bukan fatwa</b>. Untuk keadaan yang tidak tercakup, tanyakan ke amil atau ustadz yang kamu percaya.</p>
+      </div>
+      <nav aria-label="Halaman"><h3>Halaman</h3><ul><li><a href="index.html">Beranda</a></li><li><a href="hitung.html">Hitung</a></li><li><a href="rujukan.html">Rujukan</a></li><li><a href="tests.html">Uji mesin</a></li></ul></nav>
+      <nav aria-label="Kode"><h3>Kode</h3><ul><li><a href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">GitHub</a></li><li><a href="https://github.com/arnantoakbar/zakat/issues" target="_blank" rel="noopener noreferrer">Laporkan kekeliruan</a></li></ul></nav>
     </div>
-    <div class="footer-made">
-      Kodenya terbuka — silakan diperiksa dan dikoreksi.<br>
-      Made with 🔥 in Indonesia
-    </div>
+    <div class="fl-footer__legal"><span>Menyusun dan mengutip, tidak berfatwa.</span><span>Dibuat oleh Flavida, Jakarta</span></div>
   </div>
 </footer>
 
-<script src="js/dalil.js?v=1"></script>
-<script src="js/hukum-id.js?v=1"></script>
-<script src="js/ui-nav.js?v=1"></script>
-<script src="js/ui-result.js?v=1"></script>
+<script src="js/motion.min.js"></script>
+<script src="assets/v4/icons.sprite.js"></script>
+<script src="assets/v4/icons-zakat.js"></script>
+<script src="js/flavida.js"></script>
+<script src="js/flavida-ui.js"></script>
+<script src="js/dalil.js?v=2"></script>
+<script src="js/hukum-id.js?v=2"></script>
+<script src="js/ui-dalil.js?v=2"></script>
 <script>
 (function () {
   'use strict';
-  // Urutan tampil mengikuti urutan mushaf / alur belajar, bukan urutan objek.
+  // Urutan tampil mengikuti urutan mushaf dan alur belajar, bukan urutan objek.
   var QURAN = ['qs2-43', 'qs2-267', 'qs6-141', 'qs9-34', 'qs9-60', 'qs9-103', 'qs51-19'];
   var HADITS = ['hr-rukun', 'hr-muadz', 'hr-nisab-emas', 'hr-haul', 'hr-5wasaq',
     'hr-surat-abubakar', 'hr-sapi', 'hr-usyr', 'hr-dagang', 'hr-rikaz', 'hr-fitrah',
     'hr-fitrah-waktu', 'hr-tajil', 'hr-doa', 'hr-kuda-budak'];
-  var HUKUM = ['uu23-def', 'uu23-21', 'uu23-22', 'uu23-23', 'pp14-2014', 'mui-3-2003',
-    'uu-cagar'];
-
-  function bungkus(id, html) {
-    return '<div id="' + id + '" style="scroll-margin-top: 90px">' + html + '</div>';
-  }
-  document.getElementById('daftar-quran').innerHTML = QURAN.map(function (id) {
-    return bungkus(id, UIResult.renderDalil(id));
-  }).join('');
-  document.getElementById('daftar-hadits').innerHTML = HADITS.map(function (id) {
-    return bungkus(id, UIResult.renderDalil(id));
-  }).join('');
-  document.getElementById('daftar-hukum').innerHTML = HUKUM.map(function (id) {
-    return bungkus(id, UIResult.renderHukum(id));
-  }).join('');
+  var HUKUM = ['uu23-def', 'uu23-21', 'uu23-22', 'uu23-23', 'pp14-2014', 'mui-3-2003', 'uu-cagar'];
+  var D = UIDalil;
+  document.getElementById('daftar-quran').innerHTML = QURAN.map(function (id) { return D.cite(id); }).join('');
+  document.getElementById('daftar-hadits').innerHTML = HADITS.map(function (id) { return D.cite(id); }).join('');
+  document.getElementById('daftar-hukum').innerHTML = HUKUM.map(D.hukum).join('');
 })();
 </script>
+<script src="js/ui-nav.js?v=2"></script>
 </body>
 </html>

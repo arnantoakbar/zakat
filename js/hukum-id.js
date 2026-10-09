@@ -39,7 +39,7 @@
       teks: '(1) Dalam rangka pengumpulan zakat, muzaki melakukan penghitungan sendiri ' +
         'atas kewajiban zakatnya. (2) Dalam hal tidak dapat menghitung sendiri kewajiban ' +
         'zakatnya, muzaki dapat meminta bantuan BAZNAS.',
-      ringkas: 'Undang-undang justru menyuruh muzaki MENGHITUNG SENDIRI zakatnya — ' +
+      ringkas: 'Undang-undang justru menyuruh muzaki menghitung sendiri zakatnya — ' +
         'persis yang dibantu kalkulator ini. Kalau ragu, BAZNAS wajib membantu.'
     },
 
@@ -71,7 +71,7 @@
       teks: 'Peraturan Pemerintah tentang Pelaksanaan UU 23/2011 tentang Pengelolaan ' +
         'Zakat — mengatur organisasi BAZNAS, perizinan LAZ, dan pelaporannya.',
       ringkas: 'Aturan teknis lembaga amil. Yang perlu kamu tahu darinya satu saja: ' +
-        'LAZ yang sah adalah yang BERIZIN — cek daftarnya sebelum menitipkan zakat.'
+        'LAZ yang sah adalah yang berizin — cek daftarnya sebelum menitipkan zakat.'
     },
 
     'mui-3-2003': {

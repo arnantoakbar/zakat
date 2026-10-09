@@ -1,60 +1,36 @@
 /*
- * Navigasi — tombol hamburger untuk layar sempit.
+ * Perilaku navbar yang khas situs ini.
  *
- * Di layar kecil, logo "Waris by Flavida" bersaing tempat dengan tautan menu
- * sampai terpotong. Menu dipindahkan ke balik hamburger supaya logonya utuh.
+ * 1. Tombol utama di navbar disembunyikan selama tombol yang sama di hero masih
+ *    terlihat (data-cta-sentinel), supaya tidak ada dua ajakan yang kembar di
+ *    layar; ia muncul lagi begitu hero digulir lewat.
+ * 2. Status tombol tema (aria-pressed) mengikuti tema yang BENAR-BENAR tampil,
+ *    termasuk saat masih "auto" mengikuti perangkat. Pemilihan dan penyimpanan
+ *    tema dikerjakan widget bawaan sistem (data-theme-toggle + data-theme-persist).
  */
 
 (function () {
   'use strict';
+  var nav = document.querySelector('.fl-nav');
+  if (!nav) return;
 
-  var tombol = document.querySelector('.nav-toggle');
-  var menu = document.getElementById('nav-menu');
-  if (!tombol || !menu) return;
-
-  var mqDesktop = window.matchMedia('(min-width: 768px)');
-
-  function setel(buka) {
-    tombol.setAttribute('aria-expanded', String(buka));
-    tombol.setAttribute('aria-label', buka ? 'Tutup menu' : 'Buka menu');
-    // Memakai kelas, bukan atribut hidden. Di desktop CSS sudah menampilkan
-    // menu apa adanya, jadi kelas ini hanya berpengaruh di layar sempit.
-    menu.classList.toggle('buka', buka);
+  var sentinel = document.querySelector('[data-cta-sentinel]');
+  if (sentinel && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      nav.toggleAttribute('data-sans-cta', e[0].isIntersecting);
+    }).observe(sentinel);
   }
 
-  setel(false);
-
-  tombol.addEventListener('click', function () {
-    setel(tombol.getAttribute('aria-expanded') !== 'true');
-  });
-
-  // Menutup menu setelah salah satu tautannya diketuk
-  menu.addEventListener('click', function (e) {
-    if (e.target.closest('a, button') && !mqDesktop.matches) setel(false);
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && tombol.getAttribute('aria-expanded') === 'true') {
-      setel(false);
-      tombol.focus();
-    }
-  });
-
-  document.addEventListener('click', function (e) {
-    if (mqDesktop.matches) return;
-    if (tombol.getAttribute('aria-expanded') !== 'true') return;
-    if (e.target.closest('.nav-inner')) return;
-    setel(false);
-  });
-
-  // Kalau layar melebar saat menu terbuka, kembalikan ke keadaan normal
-  mqDesktop.addEventListener('change', function () { setel(false); });
-
-  // Tandai halaman yang sedang dibuka
-  var berkas = location.pathname.split('/').pop() || 'index.html';
-  Array.prototype.forEach.call(menu.querySelectorAll('a[href]'), function (a) {
-    if (a.getAttribute('href') === berkas && !a.classList.contains('btn')) {
-      a.setAttribute('aria-current', 'page');
-    }
-  });
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function segarkan() {
+    var t = document.documentElement.getAttribute('data-theme');
+    var gelap = t === 'dark' || (t !== 'light' && mq.matches);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-theme-toggle]'), function (b) {
+      b.setAttribute('aria-pressed', String(gelap));
+    });
+  }
+  segarkan();
+  window.addEventListener('load', segarkan);   // widget sistem menimpa aria-pressed saat inisialisasi
+  mq.addEventListener('change', segarkan);
+  document.addEventListener('flavida:theme', segarkan);
 })();

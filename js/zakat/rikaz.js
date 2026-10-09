@@ -17,7 +17,7 @@
     return {
       id: 'rikaz',
       label: 'Harta temuan (rikaz)',
-      ikon: 'i-permata',
+      ikon: 'i-gem',
       status: 'wajib',
       alasan: 'Rikaz dikenai seperlima (20%) seketika saat ditemukan — tanpa nisab, ' +
         'tanpa menunggu setahun.',

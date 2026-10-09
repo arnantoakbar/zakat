@@ -2,85 +2,33 @@
  * Tata letak cetak — "Simpan sebagai PDF".
  *
  * Tujuannya selembar dokumen yang enak dibawa ke amil atau ustadz: hasil,
- * alasannya, dalilnya. Bagian yang hanya berguna di layar (nav, wizard,
- * tombol, saklar) disembunyikan; kartu yang tadinya bisa dibuka-tutup
- * dibuka semua supaya tidak ada informasi yang hilang di kertas.
+ * alasannya, dalilnya. Yang hanya berguna di layar (nav, wizard, tombol,
+ * saklar) disembunyikan. Rincian (<details>) dan tema terang dipaksa lewat
+ * export.js sebelum dialog cetak dibuka, karena CSS tidak bisa membuka
+ * <details>.
  */
 
-@page {
-  margin: 14mm 12mm;
-}
+@page { margin: 14mm 12mm; }
 
-/* Sembunyikan yang hanya untuk layar */
-.nav,
-.skip-link,
-#wizard,
-.ekspor-baris,
-.mode-saklar,
-.demo,
-.btn,
-.footer-made,
-.asnaf-ket {
-  display: none !important;
-}
+.fl-nav, .fl-menu, .fl-skip, .fl-snav, #wizard, .zk-actions, .zk-bar .fl-seg,
+.zk-pilih, .fl-footer, .fl-toast-region, .fl-dialog { display: none !important; }
 
-body {
-  background: #FFFFFF !important;
-}
+body { background: #fff !important; }
+.fl-section { padding: 0 0 18px !important; background: none !important; }
+.fl-accordion summary::after { display: none; }
 
-.section {
-  padding: 0 0 18px !important;
-}
+/* Jangan memotong objek di tengah halaman */
+.fl-cite, .zk-grup, .fl-callout, .fl-stat, .fl-timeline > li, .zk-alir > li,
+.zk-cek__item, .fl-kv > div { break-inside: avoid; }
+.zk-alir h3, .zk-title, .zk-h2 { break-after: avoid; }
 
-/* Buka semua kartu kelompok berikut isinya */
-.kel-kartu:not(.buka) .kel-isi { display: block !important; }
-.kel-kepala .panah { display: none !important; }
+/* Kotak total: tetap terbaca walau latar gelapnya dibuang penghemat tinta */
+.zk-total { background: #fff !important; color: #111 !important; border: 2px solid #111; box-shadow: none !important; }
+.zk-total p { color: #111 !important; }
+.zk-total .fl-tag { color: #111 !important; background: none !important; box-shadow: inset 0 0 0 1.5px #999 !important; }
 
-/* Jangan memotong kartu di tengah halaman */
-.kel-kartu,
-.dalil,
-.card,
-.alir-tahap,
-.gw-item,
-.delta,
-.total-hero,
-.catatan-item {
-  break-inside: avoid;
-}
+.fl-progress > i, .fl-chart, .fl-stackbar i { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.fl-progress > i { transition: none !important; }
 
-/* Kotak total: latar gelap tetap dicetak bila browser mengizinkan,
-   tapi teksnya harus tetap terbaca kalau latarnya dibuang penghemat tinta. */
-.total-hero {
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  border: 2px solid #111111;
-}
-.total-hero .total-angka,
-.total-hero .total-label,
-.total-hero .total-sub { color: #111111; }
-@media print {
-  .total-hero { background: #FFFFFF !important; }
-  .total-hero::before { display: none; }
-  .total-hero .total-chips span { color: #111111; border-color: #999999; }
-}
-
-/* Meter & kadar tetap tampil — mereka informatif di kertas juga */
-.meter-isi { transition: none !important; }
-.kadar-sel.nyala { animation: none !important; }
-.alir-panah .ic { animation: none !important; }
-
-/* Ayat Arab jangan pecah aneh */
-.dalil-arab { line-height: 1.9; }
-
-/* Tautan: tampilkan alamatnya supaya tetap bisa ditelusuri dari kertas */
-.dalil-tautan a::after {
-  content: " (" attr(href) ")";
-  font-size: 10px;
-  color: #999999;
-  word-break: break-all;
-}
-
-.footer {
-  border-top: 1px solid #DDDDDD;
-  font-size: 11px;
-}
+/* Tautan: tampilkan alamatnya supaya bisa ditelusuri dari kertas */
+.fl-cite__src a::after { content: " (" attr(href) ")"; font-size: 10px; color: #706157; word-break: break-all; }

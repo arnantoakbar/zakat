@@ -386,7 +386,7 @@
 
   kasus('Ternak untuk dagang → diarahkan ke zakat perdagangan', function () {
     var k = kambing(50, { dagang: true });
-    return sama(k.status, 'info') || memuat(k.alasan, 'PERDAGANGAN');
+    return sama(k.status, 'info') || memuat(k.alasan, 'perdagangan');
   });
 
   kasus('Ternak belum haul → tarif tetap ditunjukkan, status belum haul', function () {

@@ -29,11 +29,11 @@
   var C = root.ZakatConst;
 
   var JENIS = {
-    kambing: { label: 'Kambing & domba', ikon: 'i-kambing', mulai: 40,
+    kambing: { label: 'Kambing & domba', ikon: 'i-paw-print', mulai: 40,
       dalil: ['hr-surat-abubakar', 'hr-haul'] },
-    sapi:    { label: 'Sapi & kerbau',   ikon: 'i-sapi',    mulai: 30,
+    sapi:    { label: 'Sapi & kerbau',   ikon: 'i-paw-print',    mulai: 30,
       dalil: ['hr-sapi', 'hr-haul'] },
-    unta:    { label: 'Unta',            ikon: 'i-unta',    mulai: 5,
+    unta:    { label: 'Unta',            ikon: 'i-paw-print',    mulai: 5,
       dalil: ['hr-surat-abubakar', 'hr-haul'] }
   };
 
@@ -109,7 +109,7 @@
     if (d.untukDagang) {
       dasar.status = 'info';
       dasar.alasan = 'Ternak yang memang untuk diperjualbelikan dizakati sebagai harta ' +
-        'PERDAGANGAN — 2,5% dari nilai jualnya setelah nisab dan haul — bukan dengan ' +
+        'perdagangan — 2,5% dari nilai jualnya setelah nisab dan haul — bukan dengan ' +
         'tabel ekor. Masukkan nilai jual ternakmu ke bagian "Perdagangan".';
       dasar.zakat = { rp: null, natura: null };
       dasar.kapan = { tipe: 'nanti', teks: 'lewat zakat perdagangan' };

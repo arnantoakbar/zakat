@@ -38,10 +38,10 @@
       return {
         id: 'penghasilan',
         label: 'Penghasilan & gaji',
-        ikon: 'i-gaji',
+        ikon: 'i-banknote',
         status: 'info',
         alasan: 'Dalam Al-Qur’an dan hadits sahih tidak ada zakat tersendiri atas gaji. ' +
-          'Yang diatur nash adalah zakat atas SIMPANAN: gaji yang mengendap menjadi tabungan ' +
+          'Yang diatur nash adalah zakat atas simpanan: gaji yang mengendap menjadi tabungan ' +
           'ikut dihitung di kelompok "Uang, emas, perak & dagang" setelah mencapai nisab dan ' +
           'tersimpan satu tahun.',
         dasar: setahun,
@@ -71,13 +71,13 @@
         'dan itu juga dibolehkan fatwa.' },
       { tipe: 'info', teks: 'Supaya tidak dobel: penghasilan yang sudah dizakati saat ' +
         'diterima tidak perlu dizakati lagi tahun itu. Sisanya yang mengendap jadi tabungan ' +
-        'tetap masuk zakat simpanan pada haul TAHUN BERIKUTNYA.' }
+        'tetap masuk zakat simpanan pada haul tahun berikutnya.' }
     ];
 
     return {
       id: 'penghasilan',
       label: 'Penghasilan & gaji',
-      ikon: 'i-gaji',
+      ikon: 'i-banknote',
       status: wajib ? 'wajib' : 'belumNisab',
       alasan: wajib
         ? 'Penghasilanmu setahun (' + setahun.toLocaleString('id-ID') + ' rupiah) melewati ' +

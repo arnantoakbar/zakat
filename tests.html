@@ -1,57 +1,92 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="auto" data-theme-persist data-no-snav>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Uji mesin zakat</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="assets/mark-color.svg">
-<link rel="stylesheet" href="css/tokens.css?v=1">
-<style>
-  body { font-family: var(--font-body); background: var(--bg-primary); color: var(--fg1);
-    max-width: 860px; margin: 0 auto; padding: 32px 20px; }
-  h1 { font-family: var(--font-display); font-size: 28px; }
-  .ringkas { font-size: 18px; font-weight: 700; margin: 16px 0 24px; }
-  .ringkas.gagal { color: var(--color-error); }
-  .ringkas.lulus { color: var(--color-green); }
-  .kasus { padding: 8px 12px; border-radius: 8px; font-size: 14px; margin-bottom: 4px; }
-  .kasus.ok { background: rgba(27,94,59,0.07); }
-  .kasus.tidak { background: rgba(232,57,29,0.1); font-weight: 600; }
-  .kasus .pesan { display:block; color: var(--color-ember); font-weight: 400; margin-top: 4px; }
-</style>
+<meta name="theme-color" content="#FFF8F0">
+<link rel="icon" href="assets/v4/mark-simple.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('fl-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="colors_and_type.css?v=2">
+<link rel="stylesheet" href="flavida.css?v=2">
+<link rel="stylesheet" href="flavida-extra.css?v=2">
+<link rel="stylesheet" href="flavida-app.css?v=2">
+<link rel="stylesheet" href="css/zakat.css?v=2">
 </head>
 <body>
-<h1>Uji mesin zakat</h1>
-<p>Jawaban baku dari nash dan tabel kitab fiqh. Kalau ada satu saja yang merah,
-hasil kalkulator tidak boleh dipercaya.</p>
-<div id="ringkas" class="ringkas">Menjalankan…</div>
-<div id="daftar"></div>
+<a class="fl-skip" href="#main">Lompat ke isi</a>
 
-<script src="js/zakat/const.js?v=1"></script>
-<script src="js/zakat/dagang.js?v=1"></script>
-<script src="js/zakat/uang.js?v=1"></script>
-<script src="js/zakat/penghasilan.js?v=1"></script>
-<script src="js/zakat/tani.js?v=1"></script>
-<script src="js/zakat/ternak.js?v=1"></script>
-<script src="js/zakat/rikaz.js?v=1"></script>
-<script src="js/zakat/fitrah.js?v=1"></script>
-<script src="js/zakat/solve.js?v=1"></script>
-<script src="js/dalil.js?v=1"></script>
-<script src="js/tests.js?v=1"></script>
+<header>
+  <nav class="fl-nav" data-autohide aria-label="Utama">
+    <a class="fl-nav__brand" href="index.html" aria-label="Zakat by Flavida, beranda">
+      <img src="assets/v4/mark-color.svg" alt="" width="34" height="34"><span>Zakat</span>
+    </a>
+    <ul class="fl-nav__links" role="list">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="hitung.html">Hitung</a></li>
+      <li><a href="rujukan.html">Rujukan</a></li>
+    </ul>
+    <a class="fl-btn fl-btn--sm fl-nav__cta" href="hitung.html">Mulai hitung</a>
+    <button class="fl-iconbtn zk-tema" type="button" data-theme-toggle aria-pressed="false" aria-label="Mode gelap">
+      <svg class="fl-icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="fl-icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+    </button>
+    <button class="fl-nav__toggle" type="button" aria-label="Menu" aria-controls="menu" aria-expanded="false">
+      <svg class="fl-icon i-open" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="fl-icon i-close" aria-hidden="true"><use href="#i-x"/></svg>
+    </button>
+  </nav>
+  <div class="fl-menu" id="menu">
+    <nav aria-label="Menu seluler">
+      <a href="index.html">Beranda</a>
+      <a href="hitung.html">Hitung</a>
+      <a href="rujukan.html">Rujukan</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="fl-section">
+    <div class="fl-wrap fl-wrap--narrow">
+      <h1 class="zk-title">Uji mesin zakat</h1>
+      <p class="zk-ket">Jawaban bakunya dari nash dan tabel kitab fiqh. Kalau ada satu saja yang gagal, hasil kalkulator tidak boleh dipercaya. Yang gagal tampil paling atas.</p>
+      <p class="zk-ringkas-uji" id="ringkas" role="status">Menjalankan…</p>
+      <ul class="fl-list zk-baris" id="daftar"></ul>
+    </div>
+  </section>
+</main>
+
+<script src="js/motion.min.js"></script>
+<script src="assets/v4/icons.sprite.js"></script>
+<script src="js/flavida.js"></script>
+<script src="js/flavida-ui.js"></script>
+<script src="js/zakat/const.js?v=2"></script>
+<script src="js/zakat/dagang.js?v=2"></script>
+<script src="js/zakat/uang.js?v=2"></script>
+<script src="js/zakat/penghasilan.js?v=2"></script>
+<script src="js/zakat/tani.js?v=2"></script>
+<script src="js/zakat/ternak.js?v=2"></script>
+<script src="js/zakat/rikaz.js?v=2"></script>
+<script src="js/zakat/fitrah.js?v=2"></script>
+<script src="js/zakat/solve.js?v=2"></script>
+<script src="js/dalil.js?v=2"></script>
+<script src="js/tests.js?v=2"></script>
 <script>
 (function () {
   var hasil = Tests.jalankan();
   var gagal = hasil.filter(function (h) { return !h.lulus; });
   var r = document.getElementById('ringkas');
-  r.textContent = (hasil.length - gagal.length) + '/' + hasil.length + ' lulus' +
-    (gagal.length ? ' — ' + gagal.length + ' GAGAL' : ' — semua hijau');
-  r.className = 'ringkas ' + (gagal.length ? 'gagal' : 'lulus');
-  document.getElementById('daftar').innerHTML = hasil.map(function (h) {
-    return '<div class="kasus ' + (h.lulus ? 'ok' : 'tidak') + '">' +
-      (h.lulus ? '✓ ' : '✗ ') + h.nama +
-      (h.pesan ? '<span class="pesan">' + h.pesan + '</span>' : '') + '</div>';
+  r.textContent = (hasil.length - gagal.length) + ' dari ' + hasil.length + ' lulus' +
+    (gagal.length ? ', ' + gagal.length + ' gagal' : ', semuanya');
+  r.dataset.ok = gagal.length ? '0' : '1';
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  document.getElementById('daftar').innerHTML = gagal.concat(hasil.filter(function (h) { return h.lulus; })).map(function (h) {
+    return '<li><span class="fl-pf"' + (h.lulus ? '' : ' data-state="fail"') + '>' + (h.lulus ? 'Lulus' : 'Gagal') + '</span>' +
+      '<div><b>' + esc(h.nama) + '</b>' + (h.pesan ? '<small>' + esc(h.pesan) + '</small>' : '') + '</div></li>';
   }).join('');
 })();
 </script>
+<script src="js/ui-nav.js?v=2"></script>
 </body>
 </html>

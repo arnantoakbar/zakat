@@ -9,3 +9,6 @@
 # Log & berkas sementara
 *.log
 tmp/
+
+# Keluaran alat QA
+.playwright-mcp/

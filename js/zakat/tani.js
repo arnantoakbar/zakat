@@ -40,7 +40,7 @@
       return {
         id: 'tani',
         label: 'Hasil pertanian',
-        ikon: 'i-padi',
+        ikon: 'i-wheat',
         status: 'belumNisab',
         alasan: 'Panenmu ' + t.kg + ' kg ' + bentuk + ', masih di bawah nisab ' + nisabKg +
           ' kg (5 wasaq). Belum wajib zakat — bersedekah dari hasil panen tetap dianjurkan.',
@@ -61,7 +61,7 @@
     return {
       id: 'tani',
       label: 'Hasil pertanian',
-      ikon: 'i-padi',
+      ikon: 'i-wheat',
       pengairan: pengairan,
       status: 'wajib',
       alasan: 'Panenmu ' + t.kg + ' kg ' + bentuk + ' sudah melewati nisab ' + nisabKg +

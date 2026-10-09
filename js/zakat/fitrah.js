@@ -50,7 +50,7 @@
     return {
       id: 'fitrah',
       label: 'Zakat fitrah',
-      ikon: 'i-beras',
+      ikon: 'i-users-round',
       status: 'wajib',
       alasan: jiwa + ' jiwa × 1 sha’ (2,5 kg beras) = ' + kg + ' kg. Ditunaikan di bulan ' +
         'Ramadan, wajib sampai ke penerima sebelum shalat Idulfitri.',

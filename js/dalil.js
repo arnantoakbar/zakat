@@ -64,7 +64,7 @@
           arti: 'dan doakanlah mereka. Sungguh doamu menjadi ketenteraman bagi ' +
             'jiwa mereka. Allah Maha Mendengar, Maha Mengetahui.' }
       ],
-      ringkas: 'Inilah gunanya zakat bagi PEMBAYARNYA: membersihkan harta dan jiwa. ' +
+      ringkas: 'Inilah gunanya zakat bagi pembayarnya: membersihkan harta dan jiwa. ' +
         'Sisa hartamu yang 97,5% menjadi bersih justru karena 2,5%-nya ditunaikan.'
     },
 
@@ -98,7 +98,7 @@
           arab: 'فَرِيضَةً مِنَ اللَّهِ ۗ وَاللَّهُ عَلِيمٌ حَكِيمٌ',
           arti: 'Itu ketetapan yang diwajibkan Allah. Allah Maha Mengetahui, Mahabijaksana.' }
       ],
-      ringkas: 'Satu-satunya ayat yang menetapkan KE MANA zakat boleh disalurkan — ' +
+      ringkas: 'Satu-satunya ayat yang menetapkan ke mana zakat boleh disalurkan — ' +
         'delapan golongan, tidak lebih. Kata "innama" (hanyalah) menutup pintu ' +
         'penyaluran ke luar daftar ini. Pembayar tidak wajib membagi rata ke ' +
         'delapan-delapannya; menyerahkan ke satu-dua golongan yang ada sudah sah.'
@@ -122,7 +122,7 @@
             'kamu sendiri tidak mau menerimanya kecuali dengan mata terpicing. ' +
             'Ketahuilah, Allah Mahakaya lagi Maha Terpuji.' }
       ],
-      ringkas: 'Dasar zakat atas HASIL USAHA — termasuk harta perdagangan — dan ' +
+      ringkas: 'Dasar zakat atas hasil usaha — termasuk harta perdagangan — dan ' +
         'hasil bumi. Dari keumuman "ma kasabtum" inilah ulama kontemporer ' +
         'meng-qiyas-kan zakat penghasilan.'
     },
@@ -139,14 +139,14 @@
             'dan delima yang serupa dan yang tidak serupa.' },
         { id: 'panen',
           arab: 'كُلُوا مِنْ ثَمَرِهِ إِذَا أَثْمَرَ وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ ۖ',
-          arti: 'Makanlah buahnya apabila ia berbuah, dan TUNAIKAN HAKNYA PADA HARI ' +
-            'PANENNYA;' },
+          arti: 'Makanlah buahnya apabila ia berbuah, dan tunaikan haknya pada hari ' +
+            'panennya;' },
         { id: null,
           arab: 'وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ',
           arti: 'dan janganlah berlebih-lebihan. Sungguh Allah tidak menyukai orang ' +
             'yang berlebih-lebihan.' }
       ],
-      ringkas: 'Zakat pertanian tidak menunggu setahun — waktunya HARI PANEN. ' +
+      ringkas: 'Zakat pertanian tidak menunggu setahun — waktunya hari panen. ' +
         'Setiap panen dihitung sendiri-sendiri.'
     },
 
@@ -162,7 +162,7 @@
             'dari jalan Allah.' },
         { id: 'kanz',
           arab: 'وَالَّذِينَ يَكْنِزُونَ الذَّهَبَ وَالْفِضَّةَ وَلَا يُنْفِقُونَهَا فِي سَبِيلِ اللَّهِ فَبَشِّرْهُمْ بِعَذَابٍ أَلِيمٍ',
-          arti: 'Dan orang-orang yang MENIMBUN EMAS DAN PERAK dan tidak ' +
+          arti: 'Dan orang-orang yang menimbun emas dan perak dan tidak ' +
             'menafkahkannya di jalan Allah — kabarkan kepada mereka azab yang pedih.' },
         { id: 'azab',
           arab: 'يَوْمَ يُحْمَىٰ عَلَيْهَا فِي نَارِ جَهَنَّمَ فَتُكْوَىٰ بِهَا جِبَاهُهُمْ وَجُنُوبُهُمْ وَظُهُورُهُمْ ۖ هَٰذَا مَا كَنَزْتُمْ لِأَنْفُسِكُمْ فَذُوقُوا مَا كُنْتُمْ تَكْنِزُونَ',
@@ -180,7 +180,7 @@
       rujukan: 'QS Adz-Dzariyat ayat 19',
       tautan: { label: 'Baca di Quran.com', url: 'https://quran.com/51/19' },
       arab: 'وَفِي أَمْوَالِهِمْ حَقٌّ لِلسَّائِلِ وَالْمَحْرُومِ',
-      terjemah: 'Dan pada harta mereka ada HAK untuk orang yang meminta dan orang ' +
+      terjemah: 'Dan pada harta mereka ada hak untuk orang yang meminta dan orang ' +
         'yang tidak mendapat bagian.',
       ringkas: 'Bagian untuk fakir-miskin di hartamu disebut "hak" — bukan hadiah ' +
         'dan bukan kemurahan hati. Menahannya berarti menahan hak orang lain.'
@@ -219,8 +219,8 @@
         { id: 'zakat',
           arab: 'فَإِنْ هُمْ أَطَاعُوا لِذَلِكَ فَأَعْلِمْهُمْ أَنَّ اللَّهَ افْتَرَضَ عَلَيْهِمْ صَدَقَةً فِي أَمْوَالِهِمْ تُؤْخَذُ مِنْ أَغْنِيَائِهِمْ وَتُرَدُّ عَلَى فُقَرَائِهِمْ',
           arti: 'Kalau mereka menaatinya juga, beri tahu bahwa Allah mewajibkan atas ' +
-            'mereka ZAKAT pada harta mereka — DIAMBIL DARI ORANG KAYA mereka dan ' +
-            'DIKEMBALIKAN KEPADA ORANG FAKIR mereka."' }
+            'mereka zakat pada harta mereka — diambil dari orang kaya mereka dan ' +
+            'dikembalikan kepada orang fakir mereka."' }
       ],
       ringkas: 'Prinsip dasar aliran zakat dalam satu kalimat: dari yang mampu, ' +
         'kembali ke yang kekurangan di sekitarnya. Kata "dikembalikan" menunjukkan ' +
@@ -325,7 +325,7 @@
             'pemiliknya mau bersedekah sukarela.' },
         { id: 'kambing',
           arab: 'وَفِي صَدَقَةِ الْغَنَمِ فِي سَائِمَتِهَا إِذَا كَانَتْ أَرْبَعِينَ إِلَى عِشْرِينَ وَمِائَةٍ شَاةٌ، فَإِذَا زَادَتْ عَلَى عِشْرِينَ وَمِائَةٍ إِلَى مِائَتَيْنِ شَاتَانِ، فَإِذَا زَادَتْ عَلَى مِائَتَيْنِ إِلَى ثَلَاثِمِائَةٍ فَفِيهَا ثَلَاثُ شِيَاهٍ، فَإِذَا زَادَتْ عَلَى ثَلَاثِمِائَةٍ فَفِي كُلِّ مِائَةٍ شَاةٌ،',
-          arti: 'Kambing yang DIGEMBALAKAN: 40–120 ekor → 1 kambing. Lebih dari 120 ' +
+          arti: 'Kambing yang digembalakan: 40–120 ekor → 1 kambing. Lebih dari 120 ' +
             'sampai 200 → 2 kambing. Lebih dari 200 sampai 300 → 3 kambing. Lebih ' +
             'dari 300 → tiap 100 ekor 1 kambing.' },
         { id: 'dibawahNisab',
@@ -402,7 +402,7 @@
             'ada tanggungannya, celaka di tambang tidak ada tanggungannya;' },
         { id: 'rikaz',
           arab: 'وَفِي الرِّكَازِ الْخُمُسُ',
-          arti: 'dan pada RIKAZ (harta karun temuan) zakatnya SEPERLIMA (20%).' }
+          arti: 'dan pada rikaz (harta karun temuan) zakatnya seperlima (20%).' }
       ],
       ringkas: 'Harta temuan tidak menunggu nisab dan haul — seperlimanya langsung ' +
         'dikeluarkan saat ditemukan. Harta yang datang tanpa jerih payah, bagiannya ' +
@@ -419,7 +419,7 @@
       segmen: [
         { id: 'kadar',
           arab: 'فَرَضَ رَسُولُ اللَّهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ زَكَاةَ الْفِطْرِ صَاعًا مِنْ تَمْرٍ، أَوْ صَاعًا مِنْ شَعِيرٍ',
-          arti: 'Rasulullah ﷺ mewajibkan zakat fitrah SATU SHA’ kurma atau satu ' +
+          arti: 'Rasulullah ﷺ mewajibkan zakat fitrah satu sha’ kurma atau satu ' +
             'sha’ gandum (di Indonesia: ±2,5 kg makanan pokok — beras)' },
         { id: 'siapa',
           arab: 'عَلَى الْعَبْدِ وَالْحُرِّ، وَالذَّكَرِ وَالْأُنْثَى، وَالصَّغِيرِ وَالْكَبِيرِ مِنَ الْمُسْلِمِينَ،',
@@ -427,10 +427,10 @@
             'anak-anak maupun dewasa —' },
         { id: 'waktu',
           arab: 'وَأَمَرَ بِهَا أَنْ تُؤَدَّى قَبْلَ خُرُوجِ النَّاسِ إِلَى الصَّلَاةِ',
-          arti: 'dan memerintahkan agar ditunaikan SEBELUM orang-orang berangkat ' +
+          arti: 'dan memerintahkan agar ditunaikan sebelum orang-orang berangkat ' +
             'shalat Id.' }
       ],
-      ringkas: 'Zakat fitrah dihitung per JIWA, bukan per harta: 1 sha’ makanan ' +
+      ringkas: 'Zakat fitrah dihitung per jiwa, bukan per harta: 1 sha’ makanan ' +
         'pokok untuk setiap orang yang kamu tanggung, lunas sebelum shalat Idulfitri.'
     },
 
@@ -459,7 +459,7 @@
       arab: 'أَنَّ الْعَبَّاسَ سَأَلَ النَّبِيَّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ فِي تَعْجِيلِ صَدَقَتِهِ قَبْلَ أَنْ تَحِلَّ، فَرَخَّصَ لَهُ فِي ذَلِكَ',
       terjemah: 'Abbas bertanya kepada Nabi ﷺ tentang membayar zakatnya lebih awal ' +
         'sebelum jatuh temponya, dan beliau mengizinkannya.',
-      ringkas: 'Membayar zakat LEBIH AWAL dari haulnya boleh (ta’jil). Yang ' +
+      ringkas: 'Membayar zakat lebih awal dari haulnya boleh (ta’jil). Yang ' +
         'tidak boleh adalah menundanya setelah jatuh tempo tanpa uzur.'
     },
 
@@ -488,7 +488,7 @@
         url: 'https://www.hadits.id/hadits/bukhari/1464' },
       arab: 'لَيْسَ عَلَى الْمُسْلِمِ صَدَقَةٌ فِي عَبْدِهِ وَلَا فِي فَرَسِهِ',
       terjemah: 'Tidak ada zakat atas seorang muslim pada budaknya dan pada kudanya.',
-      ringkas: 'Dasar kaidah penting: HARTA YANG DIPAKAI SENDIRI TIDAK DIZAKATI. ' +
+      ringkas: 'Dasar kaidah penting: harta yang dipakai sendiri tidak dizakati. ' +
         'Kuda tunggangan zaman itu = kendaraan dan rumah tinggal zaman ini. Yang ' +
         'dizakati adalah harta yang tersimpan dan berkembang, bukan yang dipakai ' +
         'sehari-hari.'
@@ -519,6 +519,13 @@
     if (!d.segmen) return;
     d.arab = d.segmen.map(function (s) { return s.arab; }).join(' ');
     d.terjemah = d.segmen.map(function (s) { return s.arti; }).join(' ');
+  });
+
+  // Chip derajat memakai kata pertama `derajat` — satu sumber kebenaran.
+  Object.keys(DALIL).forEach(function (id) {
+    var d = DALIL[id];
+    if (d.jenis !== 'hadits') return;
+    d.grade = /^dhaif/i.test(d.derajat) ? 'dhaif' : /^hasan/i.test(d.derajat) ? 'hasan' : 'sahih';
   });
 
   function ambil(id) { return DALIL[id] || null; }

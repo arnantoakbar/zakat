@@ -1,0 +1,188 @@
+/*
+ * Zakat — lapisan kecil di atas design system Flavida.
+ *
+ * Hanya berisi hal yang TIDAK ada di sistem: judul halaman, bentuk chip
+ * status zakat, aliran harta bernomor, dan tata letak halaman. Semua warna,
+ * radius, bayangan, dan huruf datang dari token (colors_and_type.css), jadi
+ * tema gelap ikut bekerja tanpa aturan tambahan. Jangan menulis hex di sini.
+ */
+
+/* ── Judul & teks pengantar ───────────────────────── */
+.zk-title { font: 900 clamp(2rem, 1rem + 3.2vw, 3rem)/1.05 var(--font-display); letter-spacing: -0.02em; color: var(--color-ember); text-wrap: balance; }
+.zk-h2 { font: 900 clamp(1.5rem, 1.1rem + 1.6vw, 2.125rem)/1.1 var(--font-display); letter-spacing: -0.02em; color: var(--color-ember); text-wrap: balance; }
+.zk-h3 { font: 800 1.25rem/1.2 var(--font-display); color: var(--color-ink); margin: 32px 0 14px; }
+.zk-ket { color: var(--color-mid); font-size: var(--text-body-s); line-height: 1.7; max-width: var(--measure); text-wrap: pretty; }
+.fl-section > .fl-wrap > .zk-title + .zk-ket, .zk-title + .zk-ket { margin-top: 10px; }
+
+/* ── Wizard ───────────────────────────────────────── */
+.zk-wizard { padding-block: clamp(28px, 5vw, 64px) clamp(48px, 8vw, 96px); }
+.zk-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+#steps { margin-bottom: 36px; }
+.zk-step { display: grid; gap: 22px; align-content: start; }
+.zk-step[hidden] { display: none; }
+.zk-block { border: 0; margin: 0; padding: 28px 0 0; display: grid; gap: 20px; box-shadow: inset 0 1.5px 0 var(--color-border); }
+.zk-block[hidden] { display: none; }
+.zk-block legend { float: left; width: 100%; display: flex; align-items: center; gap: 10px; padding: 0 0 6px; font: 900 1.25rem/1.2 var(--font-display); color: var(--color-ink); }
+.zk-block legend + * { clear: both; }
+.zk-block legend .fl-icon { color: var(--color-flame-ink); }
+.zk-block .fl-check { align-items: flex-start; }
+.zk-block .fl-check input { margin-top: 9px; }
+.zk-block .fl-check span { font-size: var(--text-body-xs); color: var(--color-mid); max-width: 62ch; }
+.zk-wizard .fl-seg { display: flex; flex-wrap: wrap; border-radius: 26px; }
+.zk-wizard .fl-seg__item { flex: 1 1 auto; }
+.zk-wizard .fl-seg__item span { width: 100%; justify-content: center; }
+.zk-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 36px; }
+.zk-nav #btn-maju { margin-left: auto; }
+
+/* ── Hasil: ringkasan ─────────────────────────────── */
+#hasil .fl-section { padding-block: clamp(40px, 7vw, 88px); }
+.zk-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 22px 0; }
+.zk-total { display: grid; gap: 10px; padding: clamp(24px, 4vw, 40px); border-radius: var(--radius-panel); }
+.zk-total__label { font-weight: var(--fw-bold); font-size: var(--text-body-s); color: var(--fg-on-dark-dim); }
+.zk-total__angka { font: 900 clamp(2.5rem, 1.2rem + 5vw, 4.5rem)/1 var(--font-display); letter-spacing: -0.03em; color: var(--fg-on-dark-strong); font-variant-numeric: tabular-nums; }
+.zk-total__sub { max-width: 56ch; font-size: var(--text-body-s); color: var(--fg-on-dark-dim); }
+.zk-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.zk-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+/* ── Chip status: bentuk + kata, tidak pernah warna saja ── */
+.zk-status { --tone: var(--color-mid); --tone-bg: var(--surface-sunk); display: inline-flex; align-items: center; gap: 8px; width: fit-content; min-height: 26px; padding: 0 12px 0 10px; border-radius: 999px; background: var(--tone-bg); color: var(--tone); font: 800 0.75rem var(--font-body); white-space: nowrap; }
+.zk-status::before { content: ''; width: 12px; height: 12px; flex: none; background: currentColor; }
+.zk-status[data-s="wajib"] { --tone: var(--flame-800); --tone-bg: var(--flame-100); }
+.zk-status[data-s="wajib"]::before { clip-path: circle(50%); }
+.zk-status[data-s="belumNisab"]::before { background: none; border: 2.5px solid currentColor; border-radius: 50%; }
+.zk-status[data-s="belumHaul"] { --tone: var(--color-warning); --tone-bg: var(--color-warning-bg); }
+.zk-status[data-s="belumHaul"]::before { clip-path: polygon(50% 6%, 96% 92%, 4% 92%); }
+.zk-status[data-s="tidakWajib"]::before { border-radius: 3px; }
+.zk-status[data-s="info"] { --tone: var(--color-info); --tone-bg: var(--color-info-bg); }
+.zk-status[data-s="info"]::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+
+/* ── Hasil: rincian per jenis harta ───────────────── */
+.zk-grup { margin-top: 12px; }
+.zk-grup summary { min-height: 76px; padding-block: 12px; }
+.zk-sum { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+.zk-sum .fl-card__icon { width: 48px; height: 48px; flex: none; }
+.zk-sum__t { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.zk-sum__t b { font: 800 1.0625rem/1.2 var(--font-display); color: var(--color-ink); }
+.zk-sum__n { margin-left: auto; font: 900 1.125rem var(--font-display); color: var(--color-ember); white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+.zk-sum__n--natura { font-size: 0.9375rem; white-space: normal; max-width: 15ch; }
+.zk-sum__n--kosong { color: var(--color-light); }
+.fl-accordion > .zk-body { display: grid; gap: 16px; padding-top: 4px; max-width: none; }
+.zk-alasan { color: var(--color-ink); line-height: 1.65; }
+.zk-kapan { font-size: var(--text-body-s); }
+.zk-meter { display: grid; gap: 8px; }
+.zk-meter__row { display: flex; justify-content: space-between; gap: 12px; font-size: var(--text-label); font-weight: var(--fw-bold); color: var(--color-mid); }
+.zk-kadar { display: grid; gap: 10px; max-width: 360px; }
+.zk-dasar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: var(--text-label); color: var(--color-mid); }
+.zk-dasar a.fl-tag:hover { background: var(--flame-100); }
+.zk-body .fl-callout { grid-template-columns: 44px 1fr; }
+
+/* ── Hasil: aliran bernomor ───────────────────────── */
+.zk-alir { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 44px; counter-reset: a; }
+.zk-alir > li { counter-increment: a; position: relative; display: grid; gap: 14px; padding-left: 64px; min-width: 0; }
+.zk-alir > li::before { content: counter(a); position: absolute; left: 0; top: 0; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: var(--grad-btn); color: #fff; font: 900 1.25rem var(--font-display); box-shadow: var(--shadow-clay-flame); }
+.zk-alir > li:not(:last-child)::after { content: ''; position: absolute; left: 21px; top: 54px; bottom: -34px; width: 3px; border-radius: 2px; background: var(--color-border-hover); }
+.zk-alir h3 { font: 800 1.1875rem/1.25 var(--font-display); color: var(--color-ink); padding-top: 9px; }
+.zk-pilih { display: flex; flex-wrap: wrap; gap: 8px; }
+.zk-pilih .fl-seg__item span { background: var(--surface-sunk); box-shadow: var(--shadow-inset); }
+.zk-pilih .fl-seg__item input:checked + span { background: var(--surface); box-shadow: var(--shadow-clay-sm); }
+@media (max-width: 560px) {
+  .zk-alir > li { padding-left: 0; padding-top: 58px; }
+  .zk-alir > li::after { display: none; }
+  .zk-alir h3 { padding-top: 0; }
+}
+
+/* ── Hasil: dalil, perbandingan, langkah ──────────── */
+.zk-cites, .zk-hukum { display: grid; gap: 0; margin-top: 24px; }
+.zk-hukum { gap: 14px; margin-top: 0; }
+.zk-stats { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); margin: 22px 0; }
+.zk-cek { display: grid; margin: 20px 0 28px; }
+.zk-cek__item { display: grid; gap: 6px; padding: 12px 0; box-shadow: inset 0 -1.5px 0 var(--color-border); }
+.zk-cek__item:last-child { box-shadow: none; }
+.zk-cek__item p { margin-left: 38px; font-size: var(--text-body-s); color: var(--color-mid); }
+.zk-cek__item .zk-dasar { margin-top: 2px; }
+#hasil .fl-xp { margin-top: 20px; }
+
+/* ── Footer ───────────────────────────────────────── */
+.zk-foot-brand { font: 900 1.375rem var(--font-display); color: var(--color-cream-fixed); }
+
+/* ── Beranda ──────────────────────────────────────── */
+.zk-pola { position: absolute; inset: 0; z-index: -1; color: var(--color-ember); opacity: 0.05; pointer-events: none; }
+.zk-pola svg { width: 100%; height: 100%; }
+.zk-demo { width: 100%; max-width: 480px; display: grid; gap: 16px; padding: clamp(20px, 3vw, 28px); }
+.zk-demo__kepala { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.zk-demo__judul { font: 800 1.0625rem/1.2 var(--font-display); color: var(--color-ink); }
+.zk-demo__isi { min-height: 292px; display: grid; gap: 12px; align-content: start; }
+.zk-demo__isi .fl-kv > div { padding: 9px 0; }
+.zk-demo .fl-cite { box-shadow: none; background: var(--surface-sunk); padding: 16px; }
+.zk-demo .fl-arabic { font-size: 1.375rem; line-height: 2; }
+.zk-demo .fl-cite__tr { font-size: var(--text-body-s); }
+.zk-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.zk-split { display: grid; gap: clamp(28px, 5vw, 64px); grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 900px) { .zk-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.zk-split > div { display: grid; gap: 18px; align-content: start; min-width: 0; }
+.zk-judul-bagian { margin-bottom: 28px; max-width: 24ch; }
+
+/* ── Rujukan ──────────────────────────────────────── */
+.zk-rujukan .fl-wrap { max-width: 880px; }
+.zk-daftar { display: grid; gap: 22px; margin-top: 24px; }
+
+/* ── Uji mesin ────────────────────────────────────── */
+.zk-ringkas-uji { font: 900 1.5rem var(--font-display); margin: 18px 0 8px; }
+.zk-ringkas-uji[data-ok="1"] { color: var(--color-success); }
+.zk-ringkas-uji[data-ok="0"] { color: var(--color-error); }
+
+/* Sorotan di terjemahan memakai amber yang sama dengan sorotan di teks Arab (.fl-arabic mark) */
+.fl-cite__tr mark { background: var(--amber-100); color: inherit; padding: 0 4px; border-radius: 6px; }
+
+/* ── Glosarium ────────────────────────────────────── */
+.zk-glosarium > div { padding: 14px 0; box-shadow: inset 0 -1.5px 0 var(--color-border); }
+.zk-glosarium > div:last-child { box-shadow: none; }
+.zk-glosarium dt { font: 800 1.0625rem/1.2 var(--font-display); color: var(--color-ink); }
+.zk-glosarium dd { margin: 4px 0 0; color: var(--color-mid); }
+
+#hasil .zk-ket + * { margin-top: 24px; }
+
+/* Daftar dua kolom (ikon + teks) tanpa kolom waktu bawaan fl-list */
+.fl-list.zk-baris > li { grid-template-columns: auto minmax(0, 1fr); }
+
+/* ── Tombol menu seluler: ikon buka ⇄ tutup (aturan ini ada di kit situs contoh, bukan CSS inti) ── */
+.fl-nav__toggle .i-close { display: none; }
+.fl-nav__toggle[aria-expanded="true"] .i-open { display: none; }
+.fl-nav__toggle[aria-expanded="true"] .i-close { display: block; }
+.menu__foot { margin-top: 20px; padding-inline: 6px; }
+
+/* Dalil di dalam akordeon: kutipan datar (sumur), bukan kartu di dalam kartu */
+.zk-dalil .fl-cite { box-shadow: none; background: var(--surface-sunk); }
+.zk-sum__ket { font-size: var(--text-label); font-weight: var(--fw-semibold); color: var(--color-mid); line-height: 1.4; }
+.zk-dalil .zk-sum__n { margin-left: auto; white-space: normal; }
+@media (max-width: 560px) { .zk-dalil .zk-sum__n { display: none; } }
+
+/* Angka rupiah tidak boleh terpotong ("Rp" sendirian di baris atas) */
+#hasil .fl-kv dd, .zk-demo .fl-kv dd { white-space: nowrap; }
+@media (max-width: 560px) {
+  .zk-sum { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+  .zk-sum .fl-card__icon { grid-row: span 2; }
+  .zk-sum__n { grid-column: 2; margin-left: 0; text-align: left; }
+}
+
+/* Teks legal footer gelap: token bawaan (--color-light) hanya 3,2:1 di atas #111 */
+.fl-footer--dark .fl-footer__legal { color: rgba(255, 248, 240, 0.72); }
+
+/* Judul kartu pilihan memberi ruang untuk tanda centang di pojok kanan atas (judul kita lebih panjang dari contoh sistem) */
+.fl-option__card b { padding-right: 30px; }
+
+/* Judul kolom footer memakai h3 (bukan h4) supaya urutan judul tidak melompat dari h2 */
+.fl-footer h3 { font: 800 0.75rem var(--font-body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-light); margin-bottom: 10px; }
+.fl-footer--dark h3 { color: rgba(255, 248, 240, 0.65); }
+
+/* ── Tombol tema (terang/gelap) & tombol utama navbar ── */
+.zk-tema .i-sun { display: none; }
+[data-theme="dark"] .zk-tema .i-sun { display: block; }
+[data-theme="dark"] .zk-tema .i-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .zk-tema .i-sun { display: block; }
+  [data-theme="auto"] .zk-tema .i-moon { display: none; }
+}
+/* Hero (atau halaman hitung) sudah memuat ajakan yang sama: sembunyikan tombol kembarnya di navbar. */
+.fl-nav[data-sans-cta] .fl-nav__cta { display: none; }
+@media (max-width: 899px) { .fl-nav[data-sans-cta] .zk-tema { margin-left: auto; } }

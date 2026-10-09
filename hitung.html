@@ -1,156 +1,306 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="auto" data-theme-persist data-no-snav>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hitung Zakat — simulasi sesuai Al-Qur'an dan Sunnah</title>
+<title>Hitung zakat — simulasi sesuai Al-Qur'an dan Sunnah</title>
 <meta name="description" content="Isi kondisi hartamu, lihat berapa zakatmu, ke mana alirannya, dan kapan membayarnya — lengkap dengan dalil yang bisa diperiksa. Dihitung di browser kamu sendiri, tidak ada data yang dikirim.">
 <meta name="theme-color" content="#FFF8F0">
-<link rel="icon" href="assets/mark-color.svg">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="css/tokens.css?v=1">
-<link rel="stylesheet" href="css/base.css?v=1">
-<link rel="stylesheet" href="css/app.css?v=1">
-<link rel="stylesheet" href="css/print.css?v=1" media="print">
+<link rel="icon" href="assets/v4/mark-simple.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('fl-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="colors_and_type.css?v=2">
+<link rel="stylesheet" href="flavida.css?v=2">
+<link rel="stylesheet" href="flavida-extra.css?v=2">
+<link rel="stylesheet" href="flavida-app.css?v=2">
+<link rel="stylesheet" href="flavida-sections.css?v=2">
+<link rel="stylesheet" href="css/zakat.css?v=2">
+<link rel="stylesheet" href="css/print.css?v=2" media="print">
 </head>
 <body>
-<a class="skip-link" href="#utama">Lompat ke isi</a>
+<a class="fl-skip" href="#main">Lompat ke isi</a>
 
-<script src="js/sprite.js?v=1"></script>
-
-<nav class="nav">
-  <div class="wrap nav-inner">
-    <a class="nav-brand" href="index.html">
-      <img src="assets/mark-color.svg" alt="">
-      <span class="nav-brand-teks">
-        <span class="nav-brand-nama">Zakat</span>
-        <span class="nav-brand-sub">by Flavida</span>
-      </span>
+<header>
+  <nav class="fl-nav" data-autohide data-sans-cta aria-label="Utama">
+    <a class="fl-nav__brand" href="index.html" aria-label="Zakat by Flavida, beranda">
+      <img src="assets/v4/mark-color.svg" alt="" width="34" height="34"><span>Zakat</span>
     </a>
-
-    <button class="nav-toggle" type="button" id="nav-toggle"
-            aria-expanded="false" aria-controls="nav-menu" aria-label="Buka menu">
-      <span class="nav-toggle-garis"></span>
+    <ul class="fl-nav__links" role="list">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="hitung.html" aria-current="page">Hitung</a></li>
+      <li><a href="rujukan.html">Rujukan</a></li>
+    </ul>
+    <button class="fl-iconbtn zk-tema" type="button" data-theme-toggle aria-pressed="false" aria-label="Mode gelap">
+      <svg class="fl-icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="fl-icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
     </button>
-
-    <div class="nav-menu" id="nav-menu">
+    <button class="fl-nav__toggle" type="button" aria-label="Menu" aria-controls="menu" aria-expanded="false">
+      <svg class="fl-icon i-open" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="fl-icon i-close" aria-hidden="true"><use href="#i-x"/></svg>
+    </button>
+  </nav>
+  <div class="fl-menu" id="menu">
+    <nav aria-label="Menu seluler">
       <a href="index.html">Beranda</a>
       <a href="hitung.html">Hitung</a>
       <a href="rujukan.html">Rujukan</a>
-      <a class="btn btn-dark btn-sm" href="#wizard">Mulai Hitung</a>
-    </div>
+    </nav>
+    <p class="menu__foot"><a class="fl-link" href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">Kode di GitHub</a></p>
   </div>
-</nav>
+</header>
 
-<main id="utama">
+<main id="main" tabindex="-1">
 
   <!-- ═══ WIZARD ═══ -->
-  <section class="section" id="wizard" style="padding-top: var(--space-8)">
-    <div class="wrap wrap-narrow">
+  <section class="fl-section zk-wizard" id="wizard">
+    <div class="fl-wrap fl-wrap--narrow">
 
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3); margin-bottom: var(--space-6)">
-        <span class="badge" id="langkah-pos">Langkah 1 dari 4</span>
-        <button class="btn btn-ghost btn-sm" id="btn-mulai-ulang" type="button">
-          <svg class="ic ic-sm" aria-hidden="true"><use href="#i-ulang"></use></svg>
-          Mulai ulang
+      <div class="zk-top">
+        <h1 class="zk-title">Hitung zakatmu</h1>
+        <button class="fl-btn fl-btn--sm fl-btn--ghost" type="button" data-dialog-open="#dlg-reset">
+          <svg class="fl-icon" aria-hidden="true"><use href="#i-rotate-ccw"/></svg> Mulai ulang
         </button>
       </div>
 
+      <ol class="fl-steps" id="steps" aria-label="Langkah">
+        <li aria-current="step">Harta</li><li>Isian</li><li>Hutang &amp; haul</li><li>Harga</li>
+      </ol>
+
       <!-- Langkah 1: pilih jenis harta -->
-      <div class="langkah" id="langkah-1">
-        <h2>Harta apa saja yang kamu punya?</h2>
-        <p class="langkah-ket">
-          Ketuk semua yang ada padamu — yang tidak ada, lewati saja. Rumah tinggal dan
-          kendaraan yang kamu pakai sehari-hari <strong>tidak dizakati</strong>, jadi tidak
-          ada di daftar ini.
-        </p>
-        <div class="pilih-grid" id="pilih-wadah"></div>
+      <div class="zk-step" id="langkah-1">
+        <h2 class="zk-h2">Harta apa saja yang kamu punya?</h2>
+        <p class="zk-ket">Ketuk semua yang ada padamu, yang tidak ada lewati saja. Rumah tinggal dan kendaraan yang kamu pakai sehari-hari <b>tidak dizakati</b>, jadi tidak ada di daftar ini. Hanya harta yang mencapai
+          <button class="fl-term" type="button" data-gloss="Batas minimal harta sebelum zakat wajib. Untuk uang, emas, dan dagang: setara 85 gram emas.">nisab</button>
+          yang wajib dizakati.</p>
+
+        <div class="fl-options" role="group" aria-label="Jenis harta">
+          <label class="fl-option"><input type="checkbox" data-pilih="uang"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-mint);color:var(--tone-mint-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><b>Uang &amp; tabungan</b><small>Tunai, rekening, deposito, e-wallet.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="emas"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-butter);color:var(--tone-butter-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-coins"/></svg></span><b>Emas &amp; perak</b><small>Batangan, koin, perhiasan.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="dagang"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-sky);color:var(--tone-sky-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-store"/></svg></span><b>Usaha &amp; dagang</b><small>Barang dagangan, kas usaha.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="penghasilan"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-lilac);color:var(--tone-lilac-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-banknote"/></svg></span><b>Gaji &amp; penghasilan</b><small>Gaji, honor, upah, bonus.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="tani"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-mint);color:var(--tone-mint-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-wheat"/></svg></span><b>Hasil panen</b><small>Padi dan bahan makanan pokok.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="ternak"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-peach-tone);color:var(--tone-peach-tone-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-paw-print"/></svg></span><b>Ternak</b><small>Kambing, sapi, kerbau, unta.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="rikaz"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-rose);color:var(--tone-rose-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-gem"/></svg></span><b>Harta temuan</b><small>Harta karun terpendam (rikaz).</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+          <label class="fl-option"><input type="checkbox" data-pilih="fitrah"><span class="fl-option__card"><span class="fl-card__icon" style="background:var(--tone-sky);color:var(--tone-sky-ink)"><svg class="fl-icon" aria-hidden="true"><use href="#i-users-round"/></svg></span><b>Zakat fitrah</b><small>Per jiwa, jelang Idulfitri.</small></span><span class="fl-option__tick"><svg class="fl-icon" aria-hidden="true"><use href="#i-check"/></svg></span></label>
+        </div>
       </div>
 
-      <!-- Langkah 2: angka per jenis -->
-      <div class="langkah" id="langkah-2">
-        <h2>Isi angkanya</h2>
-        <p class="langkah-ket">
-          Perkiraan wajar sudah cukup — zakat dihitung dari harta yang kamu ketahui, bukan
-          dari audit. Semua dihitung di HP/laptopmu sendiri; tidak ada angka yang dikirim
-          ke mana pun.
-        </p>
-        <div id="isian-wadah"></div>
+      <!-- Langkah 2: angka per jenis (blok yang tidak dipilih disembunyikan JS) -->
+      <div class="zk-step" id="langkah-2" hidden>
+        <h2 class="zk-h2">Isi angkanya</h2>
+        <p class="zk-ket">Perkiraan wajar sudah cukup, zakat dihitung dari harta yang kamu ketahui, bukan dari audit. Semua dihitung di HP atau laptopmu; tidak ada angka yang dikirim ke mana pun.</p>
+
+        <fieldset class="zk-block" data-blok="uang" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-wallet"/></svg> Uang &amp; tabungan</legend>
+          <div class="fl-field"><label for="in-uangJumlah">Total uang yang kamu simpan</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-uangJumlah" data-f="uangJumlah" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Jumlahkan semua: tunai, semua rekening dan tabungan, deposito, e-wallet.</p></div>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="emas" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-coins"/></svg> Emas &amp; perak</legend>
+          <div class="fl-field"><label for="in-emasSimpan">Emas yang disimpan</label>
+            <div class="fl-affix"><input id="in-emasSimpan" data-f="emasSimpan" data-t="num" inputmode="decimal" autocomplete="off" placeholder="0"><span>gram</span></div>
+            <p class="fl-hint">Batangan, koin, atau perhiasan yang jarang atau tidak dipakai.</p></div>
+          <div class="fl-field"><label for="in-emasPakai">Perhiasan yang dipakai sehari-hari</label>
+            <div class="fl-affix"><input id="in-emasPakai" data-f="emasPakai" data-t="num" inputmode="decimal" autocomplete="off" placeholder="0"><span>gram</span></div>
+            <p class="fl-hint">Menurut mazhab Syafi'i tidak wajib dizakati, jadi tidak dihitung kecuali kamu mencentang pilihan di bawah.</p></div>
+          <label class="fl-check"><input type="checkbox" data-ck="emasZakati"><span>Zakati juga perhiasan yang dipakai (pendapat mazhab Hanafi, lebih berhati-hati)</span></label>
+          <div class="fl-field"><label for="in-perakGram">Perak</label>
+            <div class="fl-affix"><input id="in-perakGram" data-f="perakGram" data-t="num" inputmode="decimal" autocomplete="off" placeholder="0"><span>gram</span></div>
+            <p class="fl-hint">Perak punya nisab sendiri: 595 gram.</p></div>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="dagang" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-store"/></svg> Usaha &amp; dagang</legend>
+          <div class="fl-field"><label for="in-dagangBarang">Nilai barang dagangan</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-dagangBarang" data-f="dagangBarang" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Pakai harga jual hari ini, bukan harga beli. Etalase, kendaraan, dan alat kerja tidak ikut: itu bukan barang dagangan.</p></div>
+          <div class="fl-field"><label for="in-dagangKas">Kas usaha</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-dagangKas" data-f="dagangKas" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Uang usaha di laci dan rekening toko.</p></div>
+          <div class="fl-field"><label for="in-dagangPiutang">Piutang usaha yang lancar</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-dagangPiutang" data-f="dagangPiutang" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Tagihan ke pelanggan yang masih diharapkan kembali.</p></div>
+          <div class="fl-field"><label for="in-dagangHutang">Hutang usaha jatuh tempo</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-dagangHutang" data-f="dagangHutang" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Hutang ke pemasok dan sejenisnya yang harus dibayar dalam waktu dekat. Mengurangi harta dagang.</p></div>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="penghasilan" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-banknote"/></svg> Gaji &amp; penghasilan</legend>
+          <div class="fl-field"><label for="in-pengBulan">Penghasilan per bulan</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-pengBulan" data-f="pengBulan" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Gaji atau honor kotor sebulan.</p></div>
+          <div class="fl-field"><label for="in-pengBonus">Bonus dan THR setahun</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-pengBonus" data-f="pengBonus" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Perkiraan totalnya setahun.</p></div>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="tani" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-wheat"/></svg> Hasil panen</legend>
+          <div class="fl-field"><label for="in-taniKg">Hasil panen (kering)</label>
+            <div class="fl-affix"><input id="in-taniKg" data-f="taniKg" data-t="num" inputmode="decimal" autocomplete="off" placeholder="0"><span>kg</span></div>
+            <p class="fl-hint">Berat yang siap simpan, untuk sekali panen.</p></div>
+          <div class="fl-field"><span class="fl-label-text" id="lb-taniBentuk">Bentuk hasilnya</span>
+            <div class="fl-seg" role="radiogroup" aria-labelledby="lb-taniBentuk" data-seg="taniBentuk">
+              <label class="fl-seg__item"><input type="radio" name="taniBentuk" value="gabah" checked><span>Gabah · nisab 653 kg</span></label>
+              <label class="fl-seg__item"><input type="radio" name="taniBentuk" value="beras"><span>Beras · nisab 520 kg</span></label>
+            </div></div>
+          <div class="fl-field"><span class="fl-label-text" id="lb-taniAir">Pengairannya</span>
+            <div class="fl-seg" role="radiogroup" aria-labelledby="lb-taniAir" data-seg="taniAir">
+              <label class="fl-seg__item"><input type="radio" name="taniAir" value="hujan" checked><span>Hujan atau alami · 10%</span></label>
+              <label class="fl-seg__item"><input type="radio" name="taniAir" value="irigasi"><span>Irigasi berbiaya · 5%</span></label>
+            </div></div>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="ternak" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-paw-print"/></svg> Ternak</legend>
+          <div class="fl-field"><label for="in-kambingEkor">Kambing atau domba</label>
+            <div class="fl-affix"><input id="in-kambingEkor" data-f="kambingEkor" data-t="num" inputmode="numeric" autocomplete="off" placeholder="0"><span>ekor</span></div>
+            <p class="fl-hint">Nisab mulai 40 ekor.</p></div>
+          <div class="fl-field"><label for="in-sapiEkor">Sapi atau kerbau</label>
+            <div class="fl-affix"><input id="in-sapiEkor" data-f="sapiEkor" data-t="num" inputmode="numeric" autocomplete="off" placeholder="0"><span>ekor</span></div>
+            <p class="fl-hint">Nisab mulai 30 ekor.</p></div>
+          <div class="fl-field"><label for="in-untaEkor">Unta</label>
+            <div class="fl-affix"><input id="in-untaEkor" data-f="untaEkor" data-t="num" inputmode="numeric" autocomplete="off" placeholder="0"><span>ekor</span></div>
+            <p class="fl-hint">Nisab mulai 5 ekor.</p></div>
+          <label class="fl-check"><input type="checkbox" data-ck="ternakGembala" checked><span>Digembalakan bebas di padang. Syarat dalam haditsnya (sa'imah): sebagian besar tahun mencari makan sendiri. Ternak yang dikandangkan dan dibeli pakannya tidak wajib zakat ternak menurut jumhur.</span></label>
+          <label class="fl-check"><input type="checkbox" data-ck="ternakDagang"><span>Ternak ini untuk diperjualbelikan. Kalau ya, ia dizakati sebagai harta dagang, bukan dengan tabel ekor.</span></label>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="rikaz" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-gem"/></svg> Harta temuan</legend>
+          <div class="fl-field"><label for="in-rikazNilai">Perkiraan nilai temuan</label>
+            <div class="fl-affix"><span>Rp</span><input id="in-rikazNilai" data-f="rikazNilai" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+            <p class="fl-hint">Harta karun terpendam peninggalan lama yang kamu temukan.</p></div>
+        </fieldset>
+
+        <fieldset class="zk-block" data-blok="fitrah" hidden>
+          <legend><svg class="fl-icon" aria-hidden="true"><use href="#i-users-round"/></svg> Zakat fitrah</legend>
+          <div class="fl-field"><span class="fl-label-text" id="lb-jiwa">Jumlah jiwa yang kamu tanggung</span>
+            <div class="fl-stepper" data-min="1" data-max="40" data-f="fitrahJiwa" role="group" aria-labelledby="lb-jiwa">
+              <button type="button" aria-label="Kurangi satu jiwa" data-stepper-minus><svg class="fl-icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Tambah satu jiwa" data-stepper-plus><svg class="fl-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </div>
+            <p class="fl-hint">Dirimu, istri, anak-anak, dan orang lain yang nafkahnya kamu tanggung.</p></div>
+        </fieldset>
       </div>
 
       <!-- Langkah 3: hutang, piutang, haul -->
-      <div class="langkah" id="langkah-3">
-        <h2>Hutang, piutang, dan lamanya tersimpan</h2>
-        <p class="langkah-ket">
-          Zakat simpanan hanya wajib bila hartamu bertahan di atas nisab selama satu tahun
-          hijriah (haul).
-        </p>
-        <div id="haul-wadah"></div>
+      <div class="zk-step" id="langkah-3" hidden>
+        <h2 class="zk-h2">Hutang, piutang, dan lamanya tersimpan</h2>
+        <p class="zk-ket">Zakat simpanan wajib bila hartamu bertahan di atas nisab selama satu tahun hijriah, yang disebut
+          <button class="fl-term" type="button" data-gloss="Masa satu tahun hijriah (kira-kira 354 hari) harta bertahan di atas nisab. Panen, harta temuan, dan fitrah tidak menunggu haul.">haul</button>.</p>
+        <div class="fl-field"><label for="in-hutangJatuhTempo">Hutang pribadi yang jatuh tempo dekat</label>
+          <div class="fl-affix"><span>Rp</span><input id="in-hutangJatuhTempo" data-f="hutangJatuhTempo" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+          <p class="fl-hint">Cicilan dan hutang yang harus dibayar dalam waktu dekat mengurangi harta yang dizakati. Sisa KPR belasan tahun tidak dikurangkan seluruhnya; cukup angsuran tahun ini.</p></div>
+        <div class="fl-field"><label for="in-piutangLancar">Piutang pribadi yang lancar</label>
+          <div class="fl-affix"><span>Rp</span><input id="in-piutangLancar" data-f="piutangLancar" data-t="rp" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+          <p class="fl-hint">Uangmu di tangan orang lain yang masih diharapkan kembali ikut dihitung.</p></div>
+        <div class="fl-field"><span class="fl-label-text" id="lb-haul">Sudah berapa lama simpananmu bertahan di atas nisab?</span>
+          <div class="fl-seg" role="radiogroup" aria-labelledby="lb-haul" data-seg="haulStatus">
+            <label class="fl-seg__item"><input type="radio" name="haulStatus" value="sudah" checked><span>Sudah setahun lebih</span></label>
+            <label class="fl-seg__item"><input type="radio" name="haulStatus" value="belum"><span>Belum setahun</span></label>
+            <label class="fl-seg__item"><input type="radio" name="haulStatus" value="tidakTahu"><span>Tidak yakin</span></label>
+          </div>
+          <p class="fl-hint">Memilih "Tidak yakin" pun tidak apa-apa: zakat dihitung sekarang dan syarat haulnya dijelaskan di hasil. Panen, temuan, dan fitrah punya waktunya sendiri.</p></div>
+        <div class="fl-field" id="haul-sejak" hidden><label for="in-haulSejak">Kira-kira sejak kapan mencapai nisab?</label>
+          <input class="fl-input" id="in-haulSejak" data-f="haulSejak" type="month">
+          <p class="fl-hint">Dipakai menghitung perkiraan tanggal jatuh tempo haulmu.</p></div>
       </div>
 
       <!-- Langkah 4: harga acuan -->
-      <div class="langkah" id="langkah-4">
-        <h2>Harga acuan hari ini</h2>
-        <p class="langkah-ket">
-          Satu-satunya angka yang bukan angka syariat: harga pasar untuk menghitung nisab.
-          Angka syariatnya sendiri (85 gram, 2,5%, dst.) tidak pernah berubah.
-        </p>
-        <div id="harga-wadah"></div>
+      <div class="zk-step" id="langkah-4" hidden>
+        <h2 class="zk-h2">Harga acuan hari ini</h2>
+        <p class="zk-ket">Satu-satunya angka yang bukan angka syariat: harga pasar untuk menghitung nisab. Angka syariatnya sendiri (85 gram, 2,5%, dan seterusnya) tidak pernah berubah.</p>
+        <p><span class="fl-fresh" id="harga-fresh" data-age="stale">Memakai nilai bawaan</span></p>
+        <p class="fl-hint" id="harga-ket"></p>
+        <div class="fl-field"><label for="in-hargaEmas">Harga emas per gram</label>
+          <div class="fl-affix"><span>Rp</span><input id="in-hargaEmas" data-f="hargaEmas" data-t="rp" inputmode="numeric" autocomplete="off"></div>
+          <p class="fl-hint" id="harga-nisab"></p></div>
+        <div class="fl-field"><label for="in-hargaPerak">Harga perak per gram</label>
+          <div class="fl-affix"><span>Rp</span><input id="in-hargaPerak" data-f="hargaPerak" data-t="rp" inputmode="numeric" autocomplete="off"></div>
+          <p class="fl-hint">Nisab perak: 595 gram.</p></div>
+        <div class="fl-field"><label for="in-hargaBeras">Harga beras per kg</label>
+          <div class="fl-affix"><span>Rp</span><input id="in-hargaBeras" data-f="hargaBeras" data-t="rp" inputmode="numeric" autocomplete="off"></div>
+          <p class="fl-hint">Untuk konversi zakat fitrah dan padanan rupiah hasil panen beras.</p></div>
       </div>
 
-      <p id="wizard-pesan" role="alert" style="display:none; color: var(--color-error); font-weight: 600; font-size: var(--text-body-xs); margin-top: var(--space-4)"></p>
+      <p class="fl-error-text" id="pesan" role="alert" hidden></p>
 
-      <div style="display:flex; justify-content:space-between; gap: var(--space-3); margin-top: var(--space-8)">
-        <button class="btn btn-ghost" type="button" id="btn-mundur" aria-label="Kembali ke langkah sebelumnya">
-          <svg class="ic ic-sm" aria-hidden="true"><use href="#i-kiri"></use></svg>
-          Kembali
+      <div class="zk-nav">
+        <button class="fl-btn fl-btn--ghost" type="button" id="btn-mundur" hidden>
+          <svg class="fl-icon" aria-hidden="true"><use href="#i-arrow-left"/></svg> Kembali
         </button>
-        <button class="btn btn-primary" type="button" id="btn-maju">Lanjut</button>
+        <button class="fl-btn" type="button" id="btn-maju">
+          <span>Lanjut</span> <svg class="fl-icon fl-icon--nudge" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </button>
       </div>
-
     </div>
   </section>
 
-  <!-- ═══ HASIL ═══ -->
-  <section id="hasil" hidden aria-live="polite"></section>
+  <!-- ═══ HASIL ═══ (cangkangnya statis supaya navigasi bagian bisa dibangun sekali) -->
+  <div id="hasil" hidden aria-live="polite">
+    <section class="fl-section fl-section--tint" id="r-ringkasan" data-section="Ringkasan"><div class="fl-wrap fl-wrap--narrow" id="out-ringkasan"></div></section>
+    <section class="fl-section" id="r-rincian" data-section="Rincian"><div class="fl-wrap fl-wrap--narrow" id="out-rincian"></div></section>
+    <section class="fl-section fl-section--tint" id="r-alir" data-section="Alirannya"><div class="fl-wrap fl-wrap--narrow" id="out-alir"></div></section>
+    <section class="fl-section" id="r-waktu" data-section="Waktu bayar"><div class="fl-wrap fl-wrap--narrow" id="out-waktu"></div></section>
+    <section class="fl-section fl-section--tint" id="r-dalil" data-section="Dalil"><div class="fl-wrap fl-wrap--narrow" id="out-dalil"></div></section>
+    <section class="fl-section" id="r-beda" data-section="Perbandingan"><div class="fl-wrap fl-wrap--narrow" id="out-beda"></div></section>
+    <section class="fl-section fl-section--tint" id="r-langkah" data-section="Langkah"><div class="fl-wrap fl-wrap--narrow" id="out-langkah"></div></section>
+  </div>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div>
-      <p class="footer-note">
-        Zakat adalah alat bantu hitung, <strong>bukan sumber utama</strong>. Verifikasi
-        hasilnya kepada amil atau ustadz terdekat untuk keadaan yang tidak tercakup.
-      </p>
-      <p style="margin-top: var(--space-4)">
-        <a href="rujukan.html">Rujukan Al-Qur'an &amp; Hadits</a> &nbsp;·&nbsp;
-        <a href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">Kode sumber di GitHub</a>
-      </p>
+<dialog class="fl-dialog fl-dialog--alert" id="dlg-reset" aria-labelledby="dlg-reset-t">
+  <div class="fl-dialog__head"><h2 id="dlg-reset-t">Kosongkan semua isian?</h2></div>
+  <form method="dialog">
+    <div class="fl-dialog__body"><p>Semua angka yang sudah kamu isi akan dihapus dan kamu mulai dari langkah pertama. Tidak ada yang tersimpan di mana pun.</p></div>
+    <div class="fl-dialog__foot">
+      <button class="fl-btn fl-btn--ghost" value="batal" data-dialog-close>Batal</button>
+      <button class="fl-btn" value="ya">Ya, kosongkan</button>
     </div>
-    <div class="footer-made">
-      Kodenya terbuka — silakan diperiksa dan dikoreksi.<br>
-      Made with 🔥 in Indonesia
+  </form>
+</dialog>
+
+<footer class="fl-footer fl-footer--dark">
+  <div class="fl-wrap">
+    <div class="fl-footer__grid">
+      <div>
+        <b class="zk-foot-brand">Zakat</b>
+        <p style="margin-top:10px;max-width:38ch">Alat bantu hitung, <b>bukan sumber utama dan bukan fatwa</b>. Untuk keadaan yang tidak tercakup, tanyakan ke amil atau ustadz yang kamu percaya.</p>
+      </div>
+      <nav aria-label="Halaman"><h3>Halaman</h3><ul><li><a href="index.html">Beranda</a></li><li><a href="hitung.html">Hitung</a></li><li><a href="rujukan.html">Rujukan</a></li><li><a href="tests.html">Uji mesin</a></li></ul></nav>
+      <nav aria-label="Kode"><h3>Kode</h3><ul><li><a href="https://github.com/arnantoakbar/zakat" target="_blank" rel="noopener noreferrer">GitHub</a></li><li><a href="https://github.com/arnantoakbar/zakat/issues" target="_blank" rel="noopener noreferrer">Laporkan kekeliruan</a></li></ul></nav>
     </div>
+    <div class="fl-footer__legal"><span>Menyusun dan mengutip, tidak berfatwa.</span><span>Dibuat oleh Flavida, Jakarta</span></div>
   </div>
 </footer>
 
-<script src="js/zakat/const.js?v=1"></script>
-<script src="js/zakat/dagang.js?v=1"></script>
-<script src="js/zakat/uang.js?v=1"></script>
-<script src="js/zakat/penghasilan.js?v=1"></script>
-<script src="js/zakat/tani.js?v=1"></script>
-<script src="js/zakat/ternak.js?v=1"></script>
-<script src="js/zakat/rikaz.js?v=1"></script>
-<script src="js/zakat/fitrah.js?v=1"></script>
-<script src="js/zakat/solve.js?v=1"></script>
-<script src="js/dalil.js?v=1"></script>
-<script src="js/hukum-id.js?v=1"></script>
-<script src="js/harga.js?v=1"></script>
-<script src="js/advice.js?v=1"></script>
-<script src="js/ui-nav.js?v=1"></script>
-<script src="js/ui-result.js?v=1"></script>
-<script src="js/export.js?v=1"></script>
-<script src="js/ui-wizard.js?v=1"></script>
+<script src="js/motion.min.js"></script>
+<script src="assets/v4/icons.sprite.js"></script>
+<script src="assets/v4/icons-zakat.js"></script>
+<script src="js/flavida.js"></script>
+<script src="js/flavida-ui.js"></script>
+<script src="js/flavida-charts.js"></script>
+<script src="js/zakat/const.js?v=2"></script>
+<script src="js/zakat/dagang.js?v=2"></script>
+<script src="js/zakat/uang.js?v=2"></script>
+<script src="js/zakat/penghasilan.js?v=2"></script>
+<script src="js/zakat/tani.js?v=2"></script>
+<script src="js/zakat/ternak.js?v=2"></script>
+<script src="js/zakat/rikaz.js?v=2"></script>
+<script src="js/zakat/fitrah.js?v=2"></script>
+<script src="js/zakat/solve.js?v=2"></script>
+<script src="js/dalil.js?v=2"></script>
+<script src="js/hukum-id.js?v=2"></script>
+<script src="js/harga.js?v=2"></script>
+<script src="js/advice.js?v=2"></script>
+<script src="js/ui-dalil.js?v=2"></script>
+<script src="js/ui-result.js?v=2"></script>
+<script src="js/export.js?v=2"></script>
+<script src="js/ui-wizard.js?v=2"></script>
+<script src="js/ui-nav.js?v=2"></script>
 </body>
 </html>

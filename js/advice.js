@@ -29,7 +29,7 @@
     // 1 — niat: syarat sah semua ibadah
     if (adaRupiah || adaNatura || hasil.fitrah) {
       langkah.push({
-        ikon: 'i-hati',
+        ikon: 'i-heart',
         judul: 'Niatkan sebagai zakat',
         teks: 'Zakat itu ibadah, dan ibadah butuh niat. Cukup di dalam hati saat ' +
           'menyerahkan atau mentransfer: "ini zakat hartaku yang wajib". Tanpa niat, ' +
@@ -40,7 +40,7 @@
     // 2 — bayar sekarang, jangan ditunda
     if (adaRupiah || adaNatura) {
       langkah.push({
-        ikon: 'i-kanan',
+        ikon: 'i-arrow-right',
         judul: 'Tunaikan sesuai waktunya, jangan ditunda',
         teks: 'Yang haulnya sudah genap ditunaikan sekarang; menundanya tanpa uzur ' +
           'terlarang, sedangkan mendahulukannya sebelum jatuh tempo justru boleh ' +
@@ -52,7 +52,7 @@
     // 3 — ke mana menyalurkan
     if (adaRupiah || adaNatura || hasil.fitrah) {
       langkah.push({
-        ikon: 'i-tangan',
+        ikon: 'i-hand-heart',
         judul: 'Salurkan lewat amil, atau langsung ke yang berhak',
         teks: 'Dua-duanya sah. Lewat lembaga amil (BAZNAS/LAZ) zakatmu dikelola dan ' +
           'tersalur ke delapan golongan; langsung pun boleh — pastikan penerimanya ' +
@@ -62,7 +62,7 @@
       });
 
       langkah.push({
-        ikon: 'i-kitab',
+        ikon: 'i-book-open',
         judul: 'Pakai lembaga resmi yang berizin',
         teks: 'Di Indonesia, pengelolaan zakat diatur undang-undang: BAZNAS dibentuk ' +
           'negara, LAZ harus berizin. Salurkan lewat yang resmi supaya amanah dan ' +
@@ -73,7 +73,7 @@
       });
 
       langkah.push({
-        ikon: 'i-dokumen',
+        ikon: 'i-receipt',
         judul: 'Minta Bukti Setor Zakat, kurangkan dari pajak',
         teks: 'BAZNAS/LAZ wajib memberimu Bukti Setor Zakat (BSZ). Simpan — zakat ' +
           'yang dibayar lewat jalur resmi mengurangi penghasilan kena pajak saat ' +
@@ -86,7 +86,7 @@
     // 4 — natura: hewan / hasil panen
     if (adaNatura) {
       langkah.push({
-        ikon: 'i-kambing',
+        ikon: 'i-paw-print',
         judul: 'Zakat ternak & panen ditunaikan dari barangnya',
         teks: 'Serahkan hewan yang sehat dan umurnya sesuai ketentuan — bukan yang ' +
           'paling jelek, tidak harus yang terbaik. Hasil panen dikeluarkan dari ' +
@@ -99,7 +99,7 @@
     // 5 — fitrah
     if (hasil.fitrah) {
       langkah.push({
-        ikon: 'i-beras',
+        ikon: 'i-users-round',
         judul: 'Zakat fitrah: lunas sebelum shalat Id',
         teks: 'Tunaikan di Ramadan — paling utama satu-dua hari menjelang Idulfitri, ' +
           'lewat masjid atau amil setempat. Lewat dari shalat Id, ia jatuh jadi ' +
@@ -111,7 +111,7 @@
     // 6 — yang belum jatuh tempo: pasang pengingat
     if (adaNanti) {
       langkah.push({
-        ikon: 'i-kalender',
+        ikon: 'i-calendar-check',
         judul: 'Catat tanggal haulmu',
         teks: 'Sebagian hartamu baru jatuh tempo nanti. Pasang pengingat di ' +
           'kalender HP-mu sekarang — haul dihitung dengan tahun hijriah (±354 hari), ' +
@@ -122,7 +122,7 @@
     // 7 — tahun depan berulang
     if (adaRupiah || adaNatura) {
       langkah.push({
-        ikon: 'i-ulang',
+        ikon: 'i-rotate-ccw',
         judul: 'Zakat simpanan berulang tiap tahun',
         teks: 'Selama simpananmu masih di atas nisab, tahun depan ia wajib dizakati ' +
           'lagi 2,5% — hitung ulang saja di sini dengan harga emas terbaru.'
@@ -131,7 +131,7 @@
 
     // 8 — selalu: verifikasi ke ahlinya
     langkah.push({
-      ikon: 'i-waspada',
+      ikon: 'i-triangle-alert',
       judul: 'Ragu? Tanyakan — ini alat bantu, bukan fatwa',
       teks: 'Untuk keadaan khusus (harta campur riba, hutang-piutang rumit, saham, ' +
         'warisan yang belum dibagi), bawalah angka dari sini sebagai bahan awal ke ' +

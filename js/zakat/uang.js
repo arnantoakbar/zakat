@@ -122,7 +122,7 @@
       // tanpa penjelasan — tampilkan kelompoknya dengan alasannya.
       if ((e.gramPakai || 0) > 0) {
         return {
-          id: 'simpanan', label: 'Uang, emas, perak & dagang', ikon: 'i-dompet',
+          id: 'simpanan', label: 'Uang, emas, perak & dagang', ikon: 'i-wallet',
           status: 'tidakWajib',
           alasan: 'Satu-satunya isianmu adalah perhiasan yang dipakai sehari-hari. ' +
             'Menurut mazhab Syafi’i perhiasan yang dipakai sewajarnya tidak wajib ' +
@@ -208,7 +208,7 @@
     return {
       id: 'simpanan',
       label: 'Uang, emas, perak & dagang',
-      ikon: 'i-dompet',
+      ikon: 'i-wallet',
       status: status,
       alasan: alasan,
       dasar: bersih,
